@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "name": "syazwan",
+    "builds": [
+        { "src": "index.js", "use": "@now/node-server" },
+        { "src": "client.js", "use": "@now/node" },
+        { "src": "master.js", "use": "@now/node" }
+      ]
+}
