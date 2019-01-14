@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #6</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #6</h1>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <h1>600+ members</h1>
+          <img class="stretch" src="img/awyeah.gif"/>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineersmy.herokuapp.com">https://engineersmy.herokuapp.com</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h3>Other meetups</h3>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/page/meetups/">https://devkami.com/page/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Tokwan: <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <span class="tag">container</span>
+            <h2>dive (again)</h2>
+            <img src="https://raw.githubusercontent.com/wagoodman/dive/master/.data/demo.gif" width="720"/>
+            <br/>
+            <a target="_blank" href="https://github.com/wagoodman/dive">Github</a>
+            <aside class="notes">
+              <ul>
+                <li>A tool for exploring a docker image, layer contents, and discovering ways to shrink your Docker image size</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>compose naming scheme</h2>
+            <p>From <strong>1.23.0</strong> naming scheme changed from <pre><code data-noescape>&lt;project&gt;_&lt;service&gt;_&lt;idx&gt;</code></pre> to <pre><code data-noescape>&lt;project&gt;_&lt;service&gt;_&lt;idx&gt;<mark>_&lt;slug&gt;</mark></code></pre> slug is randomly-generated hexadecimal string
+            <br/>
+            <a target="_blank" href="https://github.com/docker/compose/blob/master/CHANGELOG.md#1230-2018-10-30">Github</a>
+            <aside class="notes">
+              <ul>
+                <li>A tool for exploring a docker image, layer contents, and discovering ways to shrink your Docker image size</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>compose on k8s open sourced</h2>
+            <iframe class="stretch" src="https://blog.docker.com/2018/12/simplifying-kubernetes-with-docker-compose-and-friends/"></iframe>
+            <br/>
+            <a data-preview-link href="https://blog.docker.com/2018/12/simplifying-kubernetes-with-docker-compose-and-friends/">blog</a>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>DO k8s</h2>
+            <iframe class="stretch" src="https://blog.digitalocean.com/digitalocean-releases-k8s-as-a-service/"></iframe>
+            <br/>
+            <a data-preview-link href="https://blog.digitalocean.com/digitalocean-releases-k8s-as-a-service/">blog</a>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>k8s CNI plugins benchmark</h2>
+            <ul>
+              <li>Calico</li>
+              <li>Canal</li>
+              <li>Gilium</li>
+              <li>Flannel</li>
+              <li>Kube-router</li>
+              <li>Romana</li>
+              <li>WeaveNet</li>
+            </ul>
+            <br/>
+            <a target="_blank" href="https://itnext.io/benchmark-results-of-kubernetes-network-plugins-cni-over-10gbit-s-network-36475925a560">Link</a>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <span class="tag">secret-management</span>
+            <h2>Vault 1.0</h2>
+            <a target="_blank" href="https://www.hashicorp.com/blog/vault-1-0">Link</a>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <span class="tag">benchmarking</span>
+            <h2>k6.io</h2>
+            <iframe class="stretch" src="https://k6.io/"></iframe>
+            <a data-preview-link href="https://k6.io/">Link</a>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <span class="tag">aws</span>
+            <h2>Firecracker</h2>
+            <img class="stretch" src="img/firecracker.png" style="background-color: white;"/>
+            <br/>
+            <a target="_blank" href="https://firecracker-microvm.github.io/">Link</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>EC2 predictive scaling</h2>
+            <p>May combine 2 models:</p>
+            <ul>
+              <li>Predictive &mdash; <strong>free</strong> forecast load &amp; proactive capacity scheduling</li>
+              <li>Dynamic &mdash; CloudWatch metric-based scaling</li>
+            </ul>
+            <a target="_blank" href="https://aws.amazon.com/blogs/aws/new-predictive-scaling-for-ec2-powered-by-machine-learning/">Link</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Lambda</h2>
+            <p>Use any language and share common components via</p>
+            <p>Lambda Layers</p>
+            &amp;
+            <p>Lambda Runtime API</p>
+            <a target="_blank" href="https://aws.amazon.com/blogs/aws/new-for-aws-lambda-use-any-programming-language-and-share-common-components/">Link</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>New region: Stockholm</h2>
+            <p>5th Europe region opened (<code>eu-north-1</code>)</p>
+            <a target="_blank" href="https://aws.amazon.com/blogs/aws/now-open-aws-europe-stockholm-region/">Link</a>
+          </section>
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: small;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  </body>
+</html>

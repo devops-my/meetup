@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Buzz Oct 2018</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Slide -->
+        <section>
+          <h1>DevOps Meetup #4</h1>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineersmy.herokuapp.com">https://engineersmy.herokuapp.com</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h3>Other meetups</h3>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/page/meetups/">https://devkami.com/page/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Tokwan: <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>No "docker or k8s?" questions</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+
+          <section>
+            <h2>Roadrunner</h2>
+            <blockquote>
+              Much faster (10-20 times faster than a normal PHP-FPM+NGINX on a production application)
+            </blockquote>
+            <a data-preview-link href="https://github.com/spiral/roadrunner">Github</a>
+            <br/>
+            <a data-preview-link href="https://www.reddit.com/r/PHP/comments/8s30bf/roadrunner_php_psr7_application_server_and_load/">Reddit</a>
+          </section>
+
+          <section>
+            <h2>GoCD by ThoughtWorks</h2>
+            <iframe class="stretch" src="https://www.gocd.org/"></iframe>
+          </section>
+
+          <section>
+            <h2>Concourse CI</h2>
+            <iframe class="stretch" src="https://concourse-ci.org/"></iframe>
+          </section>
+
+          <section>
+            <h2>GitHub Actions</h2>
+            <a href="https://github.com/features/actions" target="_blank">Github</a>
+          </section>
+
+          <section>
+            <h2>AWS Lambda 15 mins runtime</h2>
+            <a href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html#limits-list" target="_blank">Docs</a>
+          </section>
+
+          <section>
+            <h2>Social linked data (Solid) <br/>by Tim Berners-Lee</h2>
+            <iframe class="stretch" src="https://solid.mit.edu/"></iframe>
+            <a href="https://www.inrupt.com/blog/one-small-step-for-the-web">Inrupt</a>
+          </section>
+
+          <section>
+            <h2>slack-cli</h2>
+            <p>in pure bash</p>
+            <pre><code>$ slack chat send hi @slackbot</code></pre>
+            <br/>
+            <a href="https://github.com/rockymadden/slack-cli" target="_blank">Github</a>
+          </section>
+
+          <section>
+            <h2>PostgreSQL 11 GA</h2>
+            <iframe class="stretch" src="https://www.postgresql.org/about/news/1894/"></iframe>
+          </section>
+
+          <section>
+            <h2>Allday DevOps</h2>
+            <iframe class="stretch" src="https://www.alldaydevops.com/nowlive"></iframe>
+            <p>alldaydevops.com/nowlive</p>
+          </section>
+
+          <section>
+            <h2>/buzz</h2>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  </body>
+</html>

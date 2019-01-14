@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #5</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Slide -->
+        <section>
+          <h1>DevOps Meetup #5</h1>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineersmy.herokuapp.com">https://engineersmy.herokuapp.com</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h3>Other meetups</h3>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/page/meetups/">https://devkami.com/page/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Tokwan: <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Cloudflare Workers</h2>
+            <img src="https://blog.cloudflare.com/content/images/2018/10/image-2.png" width="720"/>
+            <br/>
+            <a data-preview-link href="https://blog.cloudflare.com/cloud-computing-without-containers/">Blog</a>
+          </section>
+          <section>
+            <h3>10,000+ tenants on 1 machine</h3>
+            <img class="stretch" src="https://blog.cloudflare.com/content/images/2018/10/Artboard-42@3x.png" width="720"/>
+            <br/>
+            <h4>Isolates</h4>
+            <aside class="notes">
+              - Isolates are lightweight contexts that group variables with the code allowed to mutate them.
+              <br/>
+              - A single process can run thousands of Isolates.
+            </aside>
+          </section>
+          <section>
+            <ul>
+              <li>≈3x lower costs vs Lambda</li>
+              <li class="fragment">Piggybacking V8 and experts behind it</li>
+            </ul>
+          </section>
+          <section>
+            <h3>:(</h3>
+            <ul>
+              <li>Javascript/Typescript/WebAssembly</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Cloudflare DNS dump</h2>
+            <pre><code data-trim>
+              $ export CF_API_KEY=abcdef1234567890
+              $ export CF_API_EMAIL=someone@example.com
+              $ docker run -it --rm \
+                  -e CF_API_KEY="$CF_API_KEY" \
+                  -e CF_API_EMAIL="$CF_API_EMAIL" \
+                  lfaoro/flares domain1.tld domain2.tld
+            </code></pre>
+            <a data-preview-link href="https://github.com/lfaoro/flares/blob/master/README.md">Github</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Vaspene</h2>
+            <iframe class="stretch" data-src="http://vespene.io/"></iframe>
+            <a data-preview-link href="http://vespene.io/">Site</a>
+            &mdash;
+            <a target="_blank" href="https://github.com/vespene-io/vespene/blob/master/README.md">Github</a>
+            <aside class="notes">
+              Python-based CI with simplicity &amp; microservices in mind
+            </aside>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>dive</h2>
+            <img src="https://raw.githubusercontent.com/wagoodman/dive/master/.data/demo.gif" width="720"/>
+            <br/>
+            <a target="_blank" href="https://github.com/wagoodman/dive">Github</a>
+            <aside class="notes">
+              <ul>
+                <li>A tool for exploring a docker image, layer contents, and discovering ways to shrink your Docker image size</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <pre><code data-trim>
+              # Mac
+              brew tap wagoodman/dive
+              brew install dive
+
+              # Go
+              go get github.com/wagoodman/dive
+
+              # Docker
+              docker pull wagoodman/dive
+            </code></pre>
+            <aside class="notes">
+              <ul>
+                <li>Show Docker image contents broken down by layer</li>
+                <li>Indicate what's changed in each layer</li>
+                <li>Estimate "image efficiency"</li>
+                <li>Quick build/analysis cycles (dive build instead of docker build)</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Updating running docker containers</h2>
+            <ul>
+              <li><a href="https://github.com/v2tec/watchtower" target="_blank">Watchtower</a> - Go</li>
+              <li><a href="https://github.com/circa10a/ouroboros" target="_blank">Ouroboros</a> - Python</li>
+            </ul>
+            <aside class="notes">
+              <ul>
+                <li>By default monitor all running containers and update with <pre style="display: inline;">latest</pre> tag</li>
+                <li>Updated container will be created with same parameters (mounts, command, etc.)</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Stellar (containerd)</h2>
+            <blockquote>
+              There are several container platforms and container orchestrators out there. However, they are <strong>too complex</strong> for my use. I like simple infrastructure that is easy to deploy and manage, tolerates failure cases and is easy to debug when needed.
+            </blockquote>
+            <a data-preview-link href="https://github.com/ehazlett/stellar">Github</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Podman</h2>
+            <ul>
+              <li>security (audit)</li>
+              <li class="fragment">fork/exec model versus the client/server model when launching containers</li>
+              <li class="fragment">run containers as non-root user</li>
+            </ul>
+            <a target="_blank" href="https://opensource.com/article/18/10/podman-more-secure-way-run-containers">Blog</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>DO managed databases</h2>
+            <iframe class="stretch" data-src="https://try.digitalocean.com/dbaas-beta/"></iframe>
+            <a href="https://try.digitalocean.com/dbaas-beta/">Site</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Facebook Code</h2>
+            <iframe class="stretch" data-src="https://code.fb.com/open-source/linux/"></iframe>
+            <a data-preview-link href="https://code.fb.com/open-source/linux/">Site</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>ProcDump for Linux</h2>
+            <img src="https://raw.githubusercontent.com/Microsoft/ProcDump-for-Linux/master/procdump.gif" width="720"/>
+            <br/>
+            <a target="_blank" href="https://github.com/Microsoft/ProcDump-for-Linux">Github</a>
+          </section>
+          <aside class="notes">
+            Part of SysInternals suite for Windows
+          </aside>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>cloud-nuke</h2>
+            Main takeaways:
+            <ul>
+              <li>Run cloud-nuke on a scheduled basis</li>
+              <li>Use different accounts depending on usage frequency, with different cloud-nuke schedules</li>
+              <li>Learn to scan your bill and leverage AWS support to track down weird outliers like DataDog</li>
+            </ul>
+            <a target="_blank" href="https://blog.gruntwork.io/cloud-nuke-how-we-reduced-our-aws-bill-by-85-f3aced4e5876">Blog</a>
+            <aside class="notes">
+              Apparently, for DataDog to perform its primary monitoring functions it needed to make a lot of requests to the CloudWatch API — which it did very quietly.
+            </aside>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>GKE November 09 <br/>incident</h2>
+            <a data-preview-link href="https://status.cloud.google.com/incident/container-engine/18005">Blog</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Github October 21 <br/>post-incident</h2>
+            <a target="_blank" href="https://blog.github.com/2018-10-30-oct21-post-incident-analysis/">Blog</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>Amazon now owns 3.0.0.0/8</h2>
+            <a target="_blank" href="https://news.ycombinator.com/item?id=18407173">HN</a>
+          </section>
+        </section>
+
+        <!-- Slide -->
+        <section>
+          <section>
+            <h2>IBM bought Red Hat at $34b!!!</h2>
+          </section>
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  </body>
+</html>
