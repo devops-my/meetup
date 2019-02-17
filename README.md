@@ -13,9 +13,9 @@ Join us on [slack](http://engineersmy.herokuapp.com)!
 ## Buzz Corner
 
 - [DevOps Meetup #7](https://asyazwan.github.io/devopsmy-slides/buzz-2019-01.html)
-- [DevOps Meetup #6](https://asyazwan.github.io/devopsmy-slides/buzz-2019-01.html)
-- [DevOps Meetup #5](https://asyazwan.github.io/devopsmy-slides/buzz-2019-01.html)
-- [DevOps Meetup #4](https://asyazwan.github.io/devopsmy-slides/buzz-2019-01.html)
+- [DevOps Meetup #6](https://asyazwan.github.io/devopsmy-slides/buzz-2018-12.html)
+- [DevOps Meetup #5](https://asyazwan.github.io/devopsmy-slides/buzz-2018-11.html)
+- [DevOps Meetup #4](https://asyazwan.github.io/devopsmy-slides/buzz-2018-10.html)
 
 ## Speakers' slides
 
