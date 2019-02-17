@@ -1,5 +1,7 @@
 # DevOps Malaysia Meetup Slides
 
+Join us on slack: http://engineersmy.herokuapp.com
+
 ## Meetup links
 
 - [DevOps Meetup #7](https://www.meetup.com/DevOpsMalaysia/events/257897605/) (2019-01-15)
