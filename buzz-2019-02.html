@@ -1,0 +1,437 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #8</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+      .reveal ul li code,
+      .reveal p code {
+          background-color: #555;
+          padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #8</h1>
+        </section>
+
+        <!-- section: intro -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineersmy.herokuapp.com">https://engineersmy.herokuapp.com</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h2>Other meetups</h2>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/meetups/">https://devkami.com/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Azuan (@alienxp03): <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- section: meetup -->
+        <section>
+          <section>
+            <span class="tag">meetup</span>
+            <h2>Speaking up tech</h2>
+            <h3>23rd Feb | 9:30am - 4:30pm</h3>
+            <p>wwcodekl, ng-my, Gdg KL</p>
+            <a target="_blank" href="https://www.facebook.com/events/243560889919582/">FB</a>
+          </section>
+          <section>
+            <span class="tag">meetup</span>
+            <h2>Python 105</h2>
+            <h3>23rd Feb | 10:00am - 5:00pm</h3>
+            <p>wwcodekl - Problem solving with Python (Advanced OOP)</p>
+            <a target="_blank" href="https://wwcodekl-python105.peatix.com/">Peatix</a>
+          </section>
+          <section>
+            <span class="tag">meetup</span>
+            <h2>React Workshop</h2>
+            <h3>23rd Feb | 10:00am - 5:00pm</h3>
+            <p>React KL Group - Intro to ReactJS v2</p>
+            <a target="_blank" href="https://www.meetup.com/kl-react/events/258755070/">Meetup</a>
+          </section>
+          <section>
+            <span class="tag">meetup</span>
+            <h2>JuniorDev</h2>
+            <h3>26th Feb | 7:00pm - 9:00pm</h3>
+            <p>JuniorDev.io Malaysia Chapter - First meetup</p>
+            <a target="_blank" href="https://www.meetup.com/Junior-Developers-Malaysia/events/258533152/">Meetup</a>
+          </section>
+          <section>
+            <span class="tag">meetup</span>
+            <h2>KLJS</h2>
+            <h3>27th Feb</h3>
+            <p>JS Wednesday - first meetup of 2019</p>
+            <a target="_blank" href="https://www.facebook.com/events/291746961517992/?ti=icl">FB</a>
+          </section>
+        </section>
+
+        <!-- section: aws -->
+        <section>
+          <section>
+            <span class="tag">aws</span>
+            <h2>AWS Backup</h2>
+            <img class="stretch" src="https://d1.awsstatic.com/product-marketing/AWS%20Backup/product-page-diagram_aws_backup_how-it-works.aafc7b1324fd4d8b52e9fbcd5c95e14529de27c6.png"/>
+            <br/>
+            <a target="_blank" href="https://aws.amazon.com/blogs/aws/aws-backup-automate-and-centrally-manage-your-backups/">Blog</a>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <h2>AWS Backup</h2>
+            <ul>
+              <li>EBS, RDS dbs (-Aurora MySQL), DynamoDB tables, EFS fs, and Storage Gateway volumes, more to come</li>
+              <li>Backup uses the existing snapshot operations for all services except EFS file systems</li>
+              <li>us-east-1, us-west-2, us-east-2, eu-west-1 <br/>(<a target="_blank" href="https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/">no APAC yet</a>)</li>
+            </ul>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Cloudcraft</h2>
+            <div>
+              <img src="https://cloudcraft.co/images/liverds.png" width="640"/>
+            </div>
+            <a target="_blank" href="https://cloudcraft.co/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Yan Cui:</h2>
+            <h3>You are thinking about serverless costs all wrong</h3>
+            <a data-preview-link target="_blank" href="https://theburningmonk.com/2019/01/you-are-thinking-about-serverless-costs-all-wrong/">Article (response)</a> | 
+            <a data-preview-link target="_blank" href="https://www.theregister.co.uk/2018/12/19/serverless_computing_study/">Original Article</a>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <ul>
+              <li>There are workloads that are not a good fit with serverless, there are plenty of workloads that work great with serverless</li>
+              <li class="fragment">Yubl disbanded their devops team, Financial Engines cut costs 90%</li>
+              <li class="fragment">Look at TCO instead of just cost </li>
+            </ul>
+            <img class="fragment" style="position: absolute; top: 0; left: 0; min-height: 480px;" src="https://theburningmonk.com/wp-content/uploads/2019/01/img_5c369f426b79e.png" width="980"/>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Up</h2>
+            <ul>
+              <li>Up deploys infinitely scalable serverless apps, APIs, and static websites in seconds.</li>
+              <li>Up Pro provides additional features for production-ready applications such as encrypted environment variables, error alerting, unlimited team members, unlimited applications and priority email support for $10/mo USD</li>
+            </ul>
+            <a data-preview-link target="_blank" href="https://github.com/apex/up">Github</a>
+          </section>
+        </section>
+
+        <!-- section: k8s -->
+        <section>
+          <section>
+            <span class="tag">k8s</span>
+            <h2>Tilt</h2>
+            <p>Local Kubernetes development with no stress</p>
+            <p class="fragment">Tilt watches your files for edits, automatically builds your container images, and applies any changes to bring your environment up-to-date in real-time.</p>
+            <p class="fragment">Think docker <code>build &amp;&amp; kubectl apply</code> or <code>docker-compose up</code>.</p>
+            <a target="_blank" href="https://github.com/windmilleng/tilt">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">k8s</span>
+            <h2>Etsy: Deploying to GKE</h2>
+            <p>Deploying to a pair of Kubernetes clusters: GKE and on-premises</p>
+            <p>Terraform, Helm to solve access control (RBAC)</p>
+            <a target="_blank" href="https://codeascraft.com/2018/06/05/deploying-to-google-kubernetes-engine/">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">k8s</span>
+            <h2>K8s failure stories</h2>
+            <p>A compiled list of links to public failure stories related to Kubernetes.</p>
+            <a target="_blank" href="https://github.com/hjacobs/kubernetes-failure-stories">Blog</a>
+          </section>
+        </section>
+
+        <!-- section: docker -->
+        <section>
+          <section>
+            <span class="tag">docker</span>
+            <h2>Alpine 3.9</h2>
+            <p>88 issues closed later</p>
+            <a target="_blank" href="https://alpinelinux.org/posts/Alpine-3.9.0-released.html">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">docker</span>
+            <h5>
+            &quot;My image with 10M+ pulls has just gone (completely removed) from Docker Hub&quot;
+            </h5>
+            <blockquote style="text-align: left;">
+              just in case this is a production project. i recommend using your own repository, this way you can pull from public and push to local once, and then just pull from local. if the artifact is no longer available externally, it doesnt matter <span style="float: right;">– /u/ponyboy3</span>
+            </blockquote>
+            <a target="_blank" href="https://www.reddit.com/r/docker/comments/ail87k/my_image_with_10m_pulls_has_just_gone_completely/">Reddit</a>
+          </section>
+
+          <section>
+            <span class="tag">docker</span>
+            <h2>AKA</h2>
+            <blockquote style="text-align: left;">
+              Vendor everything
+              <span style="float: right;">– @angch</span>
+            </blockquote>
+          </section>
+        </section>
+
+        <!-- section: db -->
+        <section>
+          <section>
+            <span class="tag">db</span>
+            <h2><code>TiDB</code> - Distributed NewSQL</h2>
+            <blockquote style="text-align: left;">
+              NewSQL is a class of modern relational database management systems that seek to provide the same scalable performance of NoSQL systems for online transaction processing (OLTP) read-write workloads while still maintaining the ACID guarantees of a traditional database system.
+              <p style="float: right;">– Wikipedia</p>
+            </blockquote>
+            <a target="_blank" href="ttps://github.com/pingcap/tidb">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">db</span>
+            <h2><code>AresDB</code></h2>
+            <h3>Uber’s GPU-Powered Open Source, Real-time Analytics Engine</h3>
+            <p style="font-size: smaller;">
+            Released in November 2018, AresDB is an open source, real-time analytics engine that leverages an unconventional power source, graphics processing units (GPUs), to enable our analytics to grow at scale. An emerging tool for real-time analytics, GPU technology has advanced significantly over the years, making it a perfect fit for real-time computation and data processing in parallel.
+            </p>
+            <a target="_blank" href="https://eng.uber.com/aresdb/">Blog</a>
+          </section>
+          <section>
+            <span class="tag">db</span>
+            <h2><code>AresDB</code></h2>
+            <img src="https://1fykyq3mdn5r21tpna3wkdyi-wpengine.netdna-ssl.com/wp-content/uploads/2019/01/image20-1068x605.png" width="900"/>
+          </section>
+        </section>
+
+        <!-- section: ci -->
+        <section>
+          <section>
+            <span class="tag">ci</span>
+            <h2>Travis joins Idera</h2>
+            <a target="_blank" href="https://blog.travis-ci.com/2019-01-23-travis-ci-joins-idera-inc">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">ci</span>
+            <h2>MS DevOps CI</h2>
+            <div>
+              <p>An Unsatisfying Adventure – A developers experience and opinions using Microsoft Devops CI</p>
+            </div>
+            <a target="_blank" href="https://toxicbakery.github.io/vsts-devops/microsoft-devops-ci/">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">ci</span>
+            <h2>Bazel</h2>
+            <p>Bazel is an open-source build and test tool similar to Make, Maven, and Gradle. It uses a human-readable, high-level build language. Bazel supports projects in multiple languages and builds outputs for multiple platforms.</p>
+            <a target="_blank" href="https://bazel.build/">Site</a>
+          </section>
+        </section>
+
+        <!-- section: misc -->
+        <section>
+          <section>
+            <span class="tag">misc</span>
+            <h2>Github Draft PR</h2>
+            <div>
+              <img src="https://github.blog/wp-content/uploads/2019/02/draft-pull-requests.png?w=720"/>
+            </div>
+            <a target="_blank" href="https://github.blog/2019-02-14-introducing-draft-pull-requests/">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>
+              <img src="https://camo.githubusercontent.com/77a3af9b626d3cc82e62f8b633e124bec85c6f61/68747470733a2f2f646f63732e747765656b2e666d2f6173736574732f6c6f676f2d776974682d6261636b67726f756e642e706e67" alt="Tweek"/>
+            </h2>
+            <p>Open source feature management</p>
+            <a target="_blank" href="https://github.com/Soluto/tweek">Github</a> |
+            <a target="_blank" href="https://docs.tweek.fm/">Docs</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>The Practical Linux Hardening Guide</h2>
+            <a target="_blank" href="https://github.com/trimstray/the-practical-linux-hardening-guide">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Microsoft Acquires Citus Data</h2>
+            <a target="_blank" href="https://www.citusdata.com/blog/2019/01/24/microsoft-acquires-citus-data/">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2><code>/e/</code> A more ethical <br/>digital ecosystem</h2>
+            <div>
+              <img src="https://gitlab.e.foundation/uploads/-/system/group/avatar/47/e-foundation-color-01.png?width=68"/>
+            </div>
+            <a target="_blank" href="https://gitlab.e.foundation/e">Repo</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>NginX Unit</h2>
+            <p>Updating Apps with 100% Uptime</p>
+            <p>With NGINX Unit you can achieve zero‑downtime, non‑disruptive rolling updates to your applications with no extra infrastructure overhead</p>
+            <a target="_blank" href="https://www.nginx.com/blog/nginx-unit-updating-apps-with-100-percent-uptime">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Serverhunter</h2>
+            <div>
+              Server Hunter is an independent and impartial search tool that aims to catalog virtual and dedicated servers.
+            </div>
+            <a target="_blank" href="https://www.serverhunter.com/">Site</a>
+          </section>
+        </section>
+
+        <!-- section: article -->
+        <section>
+          <section>
+            <span class="tag">article</span>
+            <h2>Grab&apos;s <code>ExP</code> data pipeline</h2>
+            <div>
+              <p>A Lean and Scalable Data Pipeline To Capture Large Scale Events and Support Experimentation Platform.</p>
+              <p>Lessons we learned while building our batch data pipeline.</p>
+            </div>
+            <a target="_blank" href="https://engineering.grab.com/experimentation-platform-data-pipeline">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">article</span>
+            <h2>Chaos Engineering at Grab</h2>
+            <div>
+              <p>To induce chaos into our systems, we combined the power of our Experimentation Platform (ExP) and Grab-Kit</p>
+            </div>
+            <a target="_blank" href="https://engineering.grab.com/chaos-engineering">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">article</span>
+            <h2>HTTP/3: From root to tip</h2>
+            <div>
+              <img src="https://blog.cloudflare.com/content/images/2019/01/http3-stack.png" width="480"/>
+            </div>
+            <a target="_blank" href="https://blog.cloudflare.com/http-3-from-root-to-tip/">Blog</a>
+          </section>
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: large;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  </body>
+</html>
