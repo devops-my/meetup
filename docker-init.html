@@ -1,0 +1,805 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Docker Init</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Title -->
+        <section>
+          <h1>Docker Init</h1>
+          <p>Syazwan &lt;asyazwan@gmail.com&gt;</p>
+        </section>
+
+        <!-- TLDR -->
+        <section>
+          <h1>tl;dr</h1>
+          <p><code>docker run --init</code></p>
+        </section>
+
+        <!-- Slide: What is Init -->
+        <section>
+          <section>
+            <h2>What is it?</h2>
+          </section>
+
+          <section>
+            <p>
+              <blockquote>
+                <span class="fragment">In Unix-based computer operating systems,</span>
+                <span class="fragment"> init is the <strong>first process started</strong> during booting of the computer system.</span>
+                <span class="fragment"> Init is a daemon process that continues running until the system is shut down.</span>
+                <span class="fragment"><br/> &hellip; <br/></span>
+                <span class="fragment">Init is typically assigned <strong>process identifier 1</strong>.</span>
+              </blockquote>
+              <p style="text-align: right;">&mdash;Wikipedia</p>
+            </p>
+          </section>
+        </section>
+
+        <!-- Slide: Why Init -->
+        <section>
+          <section>
+            <h2>I don&apos;t care</h2>
+            <ul>
+            <li class="fragment">Zombies use resources. If kernel process table fills, it will be impossible to create new processes</li>
+            <li class="fragment">&quot;I only run 1 service per container!&quot; <span class="fragment">But are you sure the service doesn't spawn processes?</span></li>
+            <li class="fragment">How many have written custom init scripts?</li>
+            </ul>
+          </section>
+          <section>
+            <h2>When to use?</h2>
+            <ul>
+              <li class="fragment">Proper signal handling from host machine (SIGTERM spam anyone?)</li>
+              <li class="fragment">Long-running service that potentially spawns many children (zombies)</li>
+              <li class="fragment">More than 1 service (!) (restarts)</li>
+              <li class="fragment">Exit code forwarding</li>
+              <aside class="notes">Signal handling with bash requires trapping and handling manually</aside>
+            </ul>
+          </section>
+          <section>
+            <h3>
+              But, bash can adopt orphans!!!
+            </h3>
+            <ul>
+              <li class="fragment">Gotcha: single cmd will be exec'd</li>
+                <pre style="width: 100%; margin: -14px 0;" class="fragment">
+                  <code data-noescape data-trim>
+<div class="fragment fade-in-then-semi-out">
+docker run --rm ubuntu:xenial bash -c 'ps'
+PID TTY          TIME CMD
+  <mark>1</mark> pts/0    00:00:00 ps
+</div>
+<div class="fragment fade-in-then-semi-out">
+docker run --rm ubuntu:xenial bash -c 'echo; ps'
+
+PID TTY          TIME CMD
+  1 ?        00:00:00 <mark>bash</mark>
+  8 ?        00:00:00 ps
+</div>
+                  </code>
+                </pre>
+              <li class="fragment">No signal forwarding</li>
+              <li class="fragment">Unreliable exit code (eg. restart policy)</li>
+            </ul>
+          </section>
+          <section>
+            <p>
+            Roll-up your own (and miss plenty of edge cases)
+            </p>
+            <pre>
+              <code data-trim data-noescape class="stretch fragment">
+                #!/bin/bash
+
+                # Exit on error
+                set -e
+                # Let functions inherit ERR traps which otherwise they won't
+                # Equivalent to -o errtrace
+                set -E
+
+                cleanup() {
+                ...
+                }
+                <mark>trap cleanup EXIT</mark>
+                trap 'exit 1' HUP INT QUIT TERM ERR
+              </code>
+            </pre>
+          </section>
+          <section>
+            <p>
+            phusion wrote 400+ lines of init script: <br/><a href="https://github.com/phusion/baseimage-docker/blob/master/image/bin/my_init">baseimage-docker/image/bin/my_init</a>
+            </p>
+            <pre>
+              <code data-trim data-noescape>
+#!/usr/bin/python3 -u
+# -*- coding: utf-8 -*-
+
+import argparse
+import errno
+import json
+import os
+import os.path
+import re
+import signal
+import stat
+import sys
+import time
+
+ENV_INIT_DIRECTORY = os.environ.get('ENV_INIT_DIRECTORY', '/etc/my_init.d')
+
+KILL_PROCESS_TIMEOUT = int(os.environ.get('KILL_PROCESS_TIMEOUT', 30))
+KILL_ALL_PROCESSES_TIMEOUT = int(os.environ.get('KILL_ALL_PROCESSES_TIMEOUT', 30))
+
+LOG_LEVEL_ERROR = 1
+LOG_LEVEL_WARN = 1
+LOG_LEVEL_INFO = 2
+LOG_LEVEL_DEBUG = 3
+
+SHENV_NAME_WHITELIST_REGEX = re.compile('\W')
+
+log_level = None
+
+terminated_child_processes = {}
+
+_find_unsafe = re.compile(r'[^\w@%+=:,./-]').search
+
+
+class AlarmException(Exception):
+    pass
+
+
+def error(message):
+    if log_level >= LOG_LEVEL_ERROR:
+        sys.stderr.write("*** %s\n" % message)
+
+
+def warn(message):
+    if log_level >= LOG_LEVEL_WARN:
+        sys.stderr.write("*** %s\n" % message)
+
+
+def info(message):
+    if log_level >= LOG_LEVEL_INFO:
+        sys.stderr.write("*** %s\n" % message)
+
+
+def debug(message):
+    if log_level >= LOG_LEVEL_DEBUG:
+        sys.stderr.write("*** %s\n" % message)
+
+
+def ignore_signals_and_raise_keyboard_interrupt(signame):
+    signal.signal(signal.SIGTERM, signal.SIG_IGN)
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+    raise KeyboardInterrupt(signame)
+
+
+def raise_alarm_exception():
+    raise AlarmException('Alarm')
+
+
+def listdir(path):
+    try:
+        result = os.stat(path)
+    except OSError:
+        return []
+    if stat.S_ISDIR(result.st_mode):
+        return sorted(os.listdir(path))
+    else:
+        return []
+
+
+def is_exe(path):
+    try:
+        return os.path.isfile(path) and os.access(path, os.X_OK)
+    except OSError:
+        return False
+
+
+def import_envvars(clear_existing_environment=True, override_existing_environment=True):
+    if not os.path.exists("/etc/container_environment"):
+        return
+    new_env = {}
+    for envfile in listdir("/etc/container_environment"):
+        name = os.path.basename(envfile)
+        with open("/etc/container_environment/" + envfile, "r") as f:
+            # Text files often end with a trailing newline, which we
+            # don't want to include in the env variable value. See
+            # https://github.com/phusion/baseimage-docker/pull/49
+            value = re.sub('\n\Z', '', f.read())
+        new_env[name] = value
+    if clear_existing_environment:
+        os.environ.clear()
+    for name, value in new_env.items():
+        if override_existing_environment or name not in os.environ:
+            os.environ[name] = value
+
+
+def export_envvars(to_dir=True):
+    if not os.path.exists("/etc/container_environment"):
+        return
+    shell_dump = ""
+    for name, value in os.environ.items():
+        if name in ['HOME', 'USER', 'GROUP', 'UID', 'GID', 'SHELL']:
+            continue
+        if to_dir:
+            with open("/etc/container_environment/" + name, "w") as f:
+                f.write(value)
+        shell_dump += "export " + sanitize_shenvname(name) + "=" + shquote(value) + "\n"
+    with open("/etc/container_environment.sh", "w") as f:
+        f.write(shell_dump)
+    with open("/etc/container_environment.json", "w") as f:
+        f.write(json.dumps(dict(os.environ)))
+
+
+def shquote(s):
+    ""Return a shell-escaped version of the string *s*.""
+    if not s:
+        return "''"
+    if _find_unsafe(s) is None:
+        return s
+
+    # use single quotes, and put single quotes into double quotes
+    # the string $'b is then quoted as '$'"'"'b'
+    return "'" + s.replace("'", "'\"'\"'") + "'"
+
+
+def sanitize_shenvname(s):
+    ""Return string with [0-9a-zA-Z_] characters""
+    return re.sub(SHENV_NAME_WHITELIST_REGEX, "_", s)
+
+
+# Waits for the child process with the given PID, while at the same time
+# reaping any other child processes that have exited (e.g. adopted child
+# processes that have terminated).
+
+def waitpid_reap_other_children(pid):
+    global terminated_child_processes
+
+    status = terminated_child_processes.get(pid)
+    if status:
+        # A previous call to waitpid_reap_other_children(),
+        # with an argument not equal to the current argument,
+        # already waited for this process. Return the status
+        # that was obtained back then.
+        del terminated_child_processes[pid]
+        return status
+
+    done = False
+    status = None
+    while not done:
+        try:
+            # https://github.com/phusion/baseimage-docker/issues/151#issuecomment-92660569
+            this_pid, status = os.waitpid(pid, os.WNOHANG)
+            if this_pid == 0:
+                this_pid, status = os.waitpid(-1, 0)
+            if this_pid == pid:
+                done = True
+            else:
+                # Save status for later.
+                terminated_child_processes[this_pid] = status
+        except OSError as e:
+            if e.errno == errno.ECHILD or e.errno == errno.ESRCH:
+                return None
+            else:
+                raise
+    return status
+
+
+def stop_child_process(name, pid, signo=signal.SIGTERM, time_limit=KILL_PROCESS_TIMEOUT):
+    info("Shutting down %s (PID %d)..." % (name, pid))
+    try:
+        os.kill(pid, signo)
+    except OSError:
+        pass
+    signal.alarm(time_limit)
+    try:
+        try:
+            waitpid_reap_other_children(pid)
+        except OSError:
+            pass
+    except AlarmException:
+        warn("%s (PID %d) did not shut down in time. Forcing it to exit." % (name, pid))
+        try:
+            os.kill(pid, signal.SIGKILL)
+        except OSError:
+            pass
+        try:
+          ATUS(status)))
+        sys.exit(1)
+
+
+def run_command_killable_and_import_envvars(*argv):
+    run_command_killable(*argv)
+    import_envvars()
+    export_envvars(False)
+
+
+def kill_all_procespath.join(ENV_INIT_DIRECTORY, name)
+        if is_exe(filename):
+            info("Running %s..." % filename)
+            run_command_killable_and_import_envvars(filename)
+
+    # Run /etc/rc.local.
+    if is_exe("/etc/rc.local"):
+        info("Running llable(filename)
+
+
+def start_runit():
+    info("Booting runit daemon...")
+    pid = os.spawnl(os.P_NOWAIT, "/usr/bin/runsvdir", "/usr/bin/runsvdir",
+                    "-P", "/etc/service")
+    info("Runit started as PID %d" % pid)
+    return pid
+
+
+def wait_for_runit_or_interrupt(pid):
+    status = waitpid_reap_other_children(pid)
+    return (True, status)
+
+
+def shutdown_runit_services(quiet=False):
+    if not quiet:
+        debug("Begin shutting down runit services...")
+    os.system("/usr/bin/sv -w %d force-stop /etc/service/* > /dev/null" % KILL_PROCESS_TIMEOUT)
+
+
+def wait_for_runit_services():
+    debug("Waiting for runit services to exit...")
+    done = False
+    while not done:              info("Runit exited with status %d" % exit_status)
+        else:
+            info("Running %s..." % " ".join(argstdown_scripts()
+            shutdown_runit_services()
+            if not runit_exited:
+                stop_child_process("runit daemon", runit_pid)
+            wait_for_runit_services()
+            run_post_shutdown_scripts()
+
+# Parse options.
+parser = argparse.ArgumentParser(description='Initialize the system.')
+parser.add_argument('main_command', metavar='MAIN_COMMAND', type=str, nargs='*',
+                    help='The main command t system aborted.")
+    exit(2)
+finally:
+    if args.kill_all_on_exit:
+        kill_all_processes(KILL_ALL_PROCESSES_TIMEOUT)"')))")")")'"'
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h1>Just Stop.</h1>
+          </section>
+        </section>
+
+        <!-- Slide: Init options -->
+        <section>
+          <section>
+            <h2>Init options</h2>
+          </section>
+          <section>
+            <ul>
+              <li>supervisord</li>
+              <li>monit</li>
+              <li>runit</li>
+              <li>tini</li>
+              <li>dumb-init</li>
+              <li>s6</li>
+              <li>&hellip;</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Slide: tini -->
+        <section>
+          <section>
+            <h2>tini</h2>
+            <p>https://github.com/krallin/tini</p>
+          </section>
+
+          <section>
+            <p>
+            - Docker engine was using grimes until late 2016
+            </p>
+            <p class="fragment">
+            - Docker CE with tini officially released early 2017 as part of <a href="https://docs.docker.com/release-notes/docker-engine/#1130-2017-01-18">v1.13</a> <span class="fragment"><strong>(but not running by default!)</strong><br/> See PRs <a href="https://github.com/docker/docker/pull/26061">#26061</a> &amp; <a href="https://github.com/docker/docker/pull/28037">#28037</a></span>
+            </p>
+            <p class="fragment">
+            - Images without tini will work with tini without any code change. <strong>Zero config</strong>. So use it.
+            </p>
+          </section>
+
+          <section>
+            <h2>tini included</h2>
+            <p><a href="https://github.com/docker/engine/blob/master/Dockerfile#L157" data-preview-link>docker/engine/blob/master/Dockerfile#L157</a></p>
+            <pre><code data-trim>
+              FROM base AS tini
+              RUN apt-get update && apt-get install -y cmake vim-common
+              COPY hack/dockerfile/install/install.sh ./install.sh
+              ENV INSTALL_BINARY_NAME=tini
+              COPY hack/dockerfile/install/$INSTALL_BINARY_NAME.installer ./
+              RUN PREFIX=/build ./install.sh $INSTALL_BINARY_NAME
+              ...
+              COPY --from=tini /build/ /usr/local/bin/
+            </code></pre>
+          </section>
+
+          <!-- docker run with init -->
+          <section>
+            <pre>
+              <code data-trim data-noescape>
+              ~ docker run --rm -it alpine sh
+              / # ps
+              <span class="fragment">PID   USER     TIME   COMMAND
+                  1 root       0:00 sh
+                  8 root       0:00 ps
+              </span><span class="fragment">
+              ~ docker run --rm -it <mark>--init</mark> alpine sh
+              / # ps
+              </span><span class="fragment">PID   USER     TIME   COMMAND
+                  1 root       0:00 <mark>/dev/init -- sh</mark>
+                  8 root       0:00 sh
+                  9 root       0:00 ps
+              / #
+              </span>
+              </code>
+            </pre>
+          </section>
+
+          <!-- docker compose with init -->
+          <section>
+            <h2>init in compose requires 2.2</h2>
+            <pre>
+              <code data-trim data-noescape>
+              version: <mark>'2.2'</mark>
+              services:
+                web-1:
+                  image: alpine:latest
+                  init: true
+
+                web-2:
+                  image: alpine:latest
+                  init: /usr/libexec/docker-init
+              </span>
+              </code>
+            </pre>
+          </section>
+
+          <!-- docker image build with tini -->
+          <section>
+            <h2>Make it default in case users forget to add init config</h2>
+            <pre>
+              <code data-trim data-noescape>
+              ENV TINI_VERSION v0.18.0
+              RUN set -x \
+                  && curl -fSL "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini" -o /usr/local/bin/tini \
+                  && curl -fSL "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini.asc" -o /usr/local/bin/tini.asc \
+                  && export GNUPGHOME="$(mktemp -d)" \
+                  && gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
+                  && gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini \
+                  && rm -r "$GNUPGHOME" /usr/local/bin/tini.asc \
+                  && chmod +x /usr/local/bin/tini \
+                  && tini -h
+
+              ENTRYPOINT ["/usr/local/bin/tini"]
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <!-- Slide: dumb-init -->
+        <section>
+          <section>
+            <h2>dumb-init</h2>
+            <p>https://github.com/Yelp/dumb-init</p>
+          </section>
+
+          <section>
+            <pre>
+              <code data-trim data-noescape>
+                # Installing
+                # via apt
+                apt install dumb-init
+
+                # via pip
+                pip install dumb-init
+
+                # download binary during build
+                RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64
+                RUN chmod +x /usr/local/bin/dumb-init
+
+                # Using
+                ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <!-- Slide: tini or dumb-init? -->
+        <section>
+          <section>
+            <h2>tini or dumb-init?</h2>
+            <ul>
+              <li class="fragment">compiled against glibc or musl, both &lt; 1MB </li>
+              <li class="fragment">need signal <a data-preview-link href="https://github.com/Yelp/dumb-init#signal-rewriting">rewrite</a>? dumb-init</li>
+              <li class="fragment">need <a data-preview-link href="https://github.com/krallin/tini#subreaping">subreaping</a>? tini</li>
+              <li class="fragment">not sure? Any of them will do!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Slide: S6 -->
+        <section>
+          <section>
+            <h2>s6-overlay</h2>
+            <p>https://github.com/just-containers/s6-overlay</p>
+          </section>
+
+          <section>
+            <h3>Stages</h3>
+            <ol>
+              <li class="fragment">Startup of s6</li>
+              <li class="fragment">User's files:
+                <ul>
+                  <li class="fragment">Fix ownership &amp; perms: /etc/fix-attrs.d</li>
+                  <li class="fragment">Exec init scripts: /etc/cont-init.d</li>
+                  <li class="fragment">Services: /etc/services.d</li>
+                </ul>
+              </li>
+              <li class="fragment">Shutdown &amp; cleanup: /etc/cont-finish.d <br/>(with SIGTERM followed by SIGKILL after grace period)</li>
+            </ol>
+            <p class="fragment">About 3MB uncompressed</p>
+          </section>
+
+        </section>
+
+        <!-- Slide: S6 -->
+        <section>
+          <section>
+            <h2>S6</h2>
+            <pre>
+              <code data-trim>
+                FROM alpine:3.8
+                ADD https://github.com/just-containers/s6-overlay/releases/download/v1.21.8.0/s6-overlay-amd64.tar.gz /tmp/
+                RUN tar zxvf /tmp/s6-overlay-amd64.tar.gz -C /
+
+                ENTRYPOINT ["/init"]
+              </code>
+              <code data-trim>
+                $ docker build -t s6base .
+              </code>
+            </pre>
+          </section>
+          <section>
+            <pre>
+              <code data-trim>
+                $ docker run --rm -it s6base sh
+              </code>
+              <code data-trim>
+                [s6-init] making user provided files available at /var/run/s6/etc...exited 0.
+                [s6-init] ensuring user provided files have correct perms...exited 0.
+                [fix-attrs.d] applying ownership &amp; permissions fixes...
+                [fix-attrs.d] done.
+                [cont-init.d] executing container initialization scripts...
+                [cont-init.d] done.
+                [services.d] starting services
+                [services.d] done.
+                / # ^C
+                / # [cmd] sh exited 130
+                [cont-finish.d] executing container finish scripts...
+                [cont-finish.d] done.
+                [s6-finish] waiting for services.
+                [s6-finish] syncing disks.
+                [s6-finish] sending all processes the TERM signal.
+                [s6-finish] sending all processes the KILL signal and exiting.
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h2>Example use-case</h2>
+            <pre>
+              <code data-trim>
+                docker/etc/
+                ├── cont-init.d
+                │   ├── 001-apache-modules
+                │   └── 001-disable-opcache-for-dev
+                ├── cont-finish.d
+                │   └── cleanup
+                ├── fix-attrs.d
+                │   └── www
+                └── services.d
+                    └── php-fpm
+                        └── run
+              </code>
+            </pre>
+          </section>
+          <section>
+            <p>cont-init.d/001-apache-modules</p>
+            <pre>
+              <code data-trim>
+                #!/usr/bin/with-contenv sh
+
+                a2enmod rewrite proxy proxy_fcgi proxy_http setenvif &gt; /dev/null
+                a2enconf php7.2-fpm &gt; /dev/null
+              </code>
+            </pre>
+          </section>
+          <section>
+            <p>cont-init.d/001-disable-opcache-for-dev</p>
+            <pre>
+              <code data-trim data-noescape>
+                #!/usr/bin/<mark>with-contenv</mark> sh
+
+                if [ "<mark>$MY_ENV</mark>" = "development" ]; then
+                  sed -i /etc/php/7.2/fpm/php.ini -e 's/opcache.enable=1/opcache.enable=0/'
+                fi
+              </code>
+            </pre>
+          </section>
+          <section>
+            <p>cont-finish.d/cleanup</p>
+            <pre>
+              <code data-trim data-noescape>
+                #!/usr/bin/with-contenv sh
+
+                echo "Cleaning up..."
+              </code>
+            </pre>
+          </section>
+          <section>
+            <p>fix-attrs.d/www</p>
+            <pre>
+              <code data-trim>
+                /path recurse account file_perm dir_perm
+              </code>
+              <code data-trim>
+                /var/www/html/ true www-data,1001:1001 0644 0755
+              </code>
+            </pre>
+            <p class="fragment">
+              Recursively set permission to www-data or fallback to 1001:1001. Files are set 0644, folders 0755.
+            </p>
+          </section>
+          <section>
+            <p>services.d/php-fpm/run</p>
+            <pre>
+              <code data-trim>
+                #!/usr/bin/execlineb -P
+                php-fpm7.2 -F
+              </code>
+            </pre>
+            <p class="fragment">
+              No env is passed. Starts PHP-FPM in foreground.
+            </p>
+          </section>
+          <section>
+            <p>services.d/php-fpm/finish</p>
+            <pre>
+              <code data-trim>
+                #!/usr/bin/execlineb -S1
+                if { s6-test ${1} -ne 0 }
+                if { s6-test ${1} -ne 256 }
+
+                s6-svscanctl -t /var/run/s6/services
+              </code>
+            </pre>
+            <p class="fragment">
+              Terminate all services in /var/run/s6/services/ <br/>if php-fpm crashed
+            </p>
+          </section>
+        </section>
+
+        <!-- Slide: s6 cool features -->
+        <section>
+          <section>
+            <h2>Other features</h2>
+          </section>
+          <section>
+            <h2>Drop privileges</h2>
+            <pre>
+              <code data-trim>
+                #!/usr/bin/execlineb -P
+                s6-setuidgid www-data
+                nginx -g "daemon off;"
+              </code>
+            </pre>
+            <p>
+              À la gosu, su-exec, et al.<br/>
+              (check out other <code>s6-*</code> bins)
+            </p>
+          </section>
+          <section>
+            <h2>Container env</h2>
+            <pre>
+              <code data-trim>
+                #!/usr/bin/with-contenv sh
+              </code>
+            </pre>
+            <p class="fragment">
+              Use <code>with-contenv</code> helper or set <code>S6_KEEP_ENV=1</code>
+            </p>
+          </section>
+          <section>
+            <h2>Don&apos;t change permission</h2>
+            <pre>
+              <code data-trim>
+                S6_READ_ONLY_ROOT=1
+              </code>
+            </pre>
+            <p class="fragment" style="text-align: left;">
+              Without this, S6 will <br/>
+              <code style="font-size: 0.5em;">chown -R root:root /etc/{cont-init.d,cont-finish.d,fix-attrs.d,services.d}/</code>
+              <br/>
+              With this, S6 will copy those folders to <code>/var/run/s6/etc</code> and leave your mounted init scripts untouched
+            </p>
+          </section>
+
+          <section>
+            <h2><code>execline</code></h2>
+            <ul>
+              <li>An execline script is a single argv, made of a chain of programs designed to perform their action then <code>exec()</code> into the next one</li>
+              <li class="fragment"><code>execlineb</code>: launcher that parses text file, converts it to argv then executes into that argv</li>
+              <li class="fragment">simple, which in turn provides better portability and performance than <code>sh</code></li>
+              <li class="fragment">:( size limit &mdash; argv</li>
+              <li class="fragment">:( no signal handling</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>...and lots more</h2>
+            <p>
+              <code>S6_LOGGING</code><br/>
+              <code>S6_BEHAVIOUR_IF_STAGE2_FAILS</code><br/>
+              ...
+            </p>
+          </section>
+        </section>
+
+        <!-- Slide: TQ -->
+        <section>
+          <h2>Thanks</h2>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  </body>
+</html>
