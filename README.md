@@ -21,6 +21,7 @@ Join us on [slack](http://engineersmy.herokuapp.com)!
 
 ## Speakers' slides
 
+- [Journey to the Cloud - Randstad Edition](https://docs.google.com/presentation/d/1YBw8DTLYK8-9MrmENlO1NNYEjdGiCCSNbBnYaCYxJk8/edit?usp=sharing) by Faz, Randstad (DevOps Meetup #8)
 - [Docker init](https://asyazwan.github.io/devopsmy-slides/docker-init.html) by Syazwan (DevOps Meetup #8)
 - [Immutable Deployment](https://docs.google.com/presentation/d/11p9b_BkEXVk-pzZCvWWIwk6d-w3TGZTrV56TL3ahZog/edit?usp=sharing) by Wissam, Photobook (DevOps Meetup #5)
 - [Make sure your shit works](http://talks.webconverger.com/2018-09-18/#1) by Kai Hendry, Unee-T (DevOps Meetup #3)
