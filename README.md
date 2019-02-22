@@ -1,3 +1,5 @@
+# Moved to: https://github.com/devops-my/meetup / https://devops-my.github.io/meetup/
+
 # DevOps Malaysia Meetup Slides
 
 Join us on [slack](http://engineersmy.herokuapp.com)!
