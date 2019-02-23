@@ -15,8 +15,14 @@ Join us on [slack](http://engineersmy.herokuapp.com)!
 ## Organizers
 
 - Ahmad Syazwan (asyazwan[at]gmail.com)
+- Chee Leong
+- Wendy
+- Ang Chin Han
+- Sam Ng
 
 ## Shout-out
+
+Mad props to [Swee Meng](https://www.patreon.com/sweemeng), our unofficial official photographer.
 
 Many thanks to venue sponsors for hosting our meetups at no costs, and sometimes with free food! In no specific order:
 
