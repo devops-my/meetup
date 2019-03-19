@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #9</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+      .reveal ul li code,
+      .reveal p code {
+          background-color: #555;
+          padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #9</h1>
+          <h2>Maxis Academy</h2>
+          <h3>19th March 2019</h3>
+        </section>
+
+        <!-- section: intro -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineersmy.herokuapp.com">https://engineersmy.herokuapp.com</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h2>Other meetups</h2>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/meetups/">https://devkami.com/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Azuan (@alienxp03): <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- section: news -->
+        <section>
+          <section>
+            <span class="tag">news</span>
+            <h2>Fall of the Giants</h2>
+            <a target="_blank" href="https://techcrunch.com/2019/03/14/facebook-blames-a-misconfigured-server-for-yesterdays-outage/">Facebook down</a>
+            <br/>
+            <a target="_blank" href="https://status.cloud.google.com/incident/storage/19002">Google services down</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Netflix &amp; Google donated Spinnaker to <br/>Continuous Delivery Foundation <br/>(CDF)</h2>
+            <a target="_blank" href="https://medium.com/netflix-techblog/spinnaker-sets-sail-to-the-continuous-delivery-foundation-e81cd2cbbfeb">Article</a> |
+            <a target="_blank" href="https://cd.foundation/">CDF</a>
+          </section>
+        </section>
+
+        <!-- section: ci/cd -->
+        <section>
+          <section>
+            <span class="tag">ci/cd</span>
+            <h2>Screwdriver</h2>
+            <p>Screwdriver began as a hack for simplified interfacing with Jenkins at Yahoo in 2012.</p>
+            <p class="fragment">In 2016, we rebuilt Screwdriver from scratch in open source with our best coding practices and CICD goals in mind.</p>
+            <p class="fragment">Screwdriver is executor- and SCM-agnostic, meaning you can choose whichever plugin better suits your need or build your own.</p>
+            <a target="_blank" href="https://github.com/screwdriver-cd/screwdriver">Github</a> |
+            <a target="_blank" href="https://screwdriver.cd/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">ci/cd</span>
+            <h2>CDS</h2>
+            <p>Enterprise-Grade Continuous Delivery &amp; DevOps Automation Platform written in Go(lang)</p>
+            <img class="stretch" src="https://raw.githubusercontent.com/ovh/cds/master/docs/static/images/capture-start.gif"/>
+            <br/>
+            <a target="_blank" href="https://github.com/ovh/cds/blob/master/README.md">Github</a>
+          </section>
+        </section>
+
+        <!-- section: container -->
+        <section>
+          <section>
+            <span class="tag">container</span>
+            <h2>Netflix's Vector improved</h2>
+            <p>Extending Vector with eBPF to inspect host and container performance</p>
+            <div class="fragment">
+              <h3>Notable:</h3>
+              <ul>
+                <li>BCC / eBPF visualisations</li>
+                <li>UI/UX improvements</li>
+                <li>Switch from Angular 1.X to React</li>
+              </ul>
+            </div>
+            <br/>
+            <a target="_blank" href="https://medium.com/netflix-techblog/extending-vector-with-ebpf-to-inspect-host-and-container-performance-5da3af4c584b">Blog</a> |
+            <a target="_blank" href="https://github.com/netflix/vector">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>BUILDAH</h2>
+            <p>Building containers in unprivileged environments</p>
+            <blockquote class="fragment" style="text-align: left; width: 860px; font-size: 0.7em;">
+              Buildah is a tool and library for building Open Container Initiative (OCI) container images that is <strong>complementary to Podman</strong>.
+              <br/><center>...</center><br/>
+              If you want to use a traditional container engine, and use Dockerfile's for builds, then you should probably just use Podman. But if you want to experiment with building container images in new ways <strong>without using Dockerfile</strong>, then you should really take a look at Buildah.
+            </blockquote>
+            <a target="_blank" href="https://opensource.com/article/19/3/tips-tricks-rootless-buildah">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>Uber's Kraken</h2>
+            <p>P2P Docker registry capable of distributing TBs of data in seconds</p>
+            <blockquote class="fragment" style="text-align: left; width: 860px; font-size:0.8em;">
+              ...a simple Docker registry setup with sharding and caches couldn’t keep up with the throughput required to distribute Docker images efficiently. <br/>
+              To solve performance issues with our legacy Docker registry stack, Uber’s Cluster Management team developed Kraken, an open source, peer-to-peer (P2P) Docker registry. 
+            </blockquote>
+            <a target="_blank" href="https://eng.uber.com/introducing-kraken/">Blog</a> |
+            <a target="_blank" href="https://github.com/uber/kraken">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>Uber's Makisu</h2>
+            <p>fast, reliable docker image builder for Mesos &amp; k8s</p>
+            
+            <ul style="font-size: 0.8em;">
+              <li class="fragment">Requires no elevated privileges or containerd/Docker daemon, making the build process portable</li>
+              <li class="fragment">distributed layer cache to improve performance across a build cluster</li>
+              <li class="fragment">control over generated layers with a new optional keyword, reducing the number of layers in images</li>
+              <li class="fragment">Docker compatible</li>
+              <li class="fragment">in use at Uber since early 2018, building thousands of images every day across 4 different languages</li>
+            </ul>
+            <a target="_blank" href="https://eng.uber.com/introducing-kraken/">Blog</a> |
+            <a target="_blank" href="https://github.com/uber/makisu">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>Rancher's k3s</h2>
+            <p style="font-size: 0.8em;">Lightweight k8s. A binary of less than 40 MB. Only 512 MB of RAM required to run.</p>
+            <iframe class="stretch" src="https://k3s.io"></iframe>
+            <br/>
+            
+            <a target="_blank" href="https://k3s.io/">Site</a> |
+            <a target="_blank" href="https://github.com/rancher/k3s">Github</a>
+          </section>
+        </section>
+
+        <!-- section: cloud -->
+        <section>
+          <section>
+            <span class="tag">cloud</span>
+            <h2>DO PostgreSQL DB</h2>
+            <p>Managed Databases for PostgreSQL</p>
+            <a target="_blank" href="https://blog.digitalocean.com/announcing-managed-databases-for-postgresql/">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>DO Marketplace</h2>
+            <p>Discover and deploy preconfigured One-Click Applications</p>
+            <a target="_blank" href="https://marketplace.digitalocean.com/">Site</a>
+          </section>
+
+          <section data-state="iframe-scroller">
+            <span class="tag">cloud</span>
+            <h2>CloudFlare MITM tools</h2>
+            <ul>
+              <li>MITMengine (<a href="https://github.com/cloudflare/mitmengine">Github</a>)</li>
+              <li><a href="https://malcolm.cloudflare.com/">MALCOLM</a> dashboard</li>
+            </ul>
+            <br/>
+            <iframe class="stretch" id="iframe-scroller" src="https://malcolm.cloudflare.com/#snapshot-chart-global"></iframe>
+            <br/>
+            <a target="_blank" href="https://blog.cloudflare.com/monsters-in-the-middleboxes/">Blog</a>
+          </section>
+        </section>
+
+        <!-- section: db -->
+        <section>
+          <section>
+            <span class="tag">db</span>
+            <h2>ProxySQL</h2>
+            <h3>High-performance MySQL proxy</h3>
+            <p class="fragment">ProxySQL is a high performance, high availability, protocol aware proxy for MySQL and forks (like Percona Server and MariaDB). All the while getting the unlimited freedom that comes with a GPL license.</p>
+            <a target="_blank" href="https://proxysql.com/">Site</a> |
+            <a target="_blank" href="https://github.com/sysown/proxysql">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">db</span>
+            <h2>PostgreSQL fsync fix released</h2>
+            <p>After about 2 years in discussion</p>
+            <a target="_blank" href="https://www.percona.com/blog/2019/02/22/postgresql-fsync-failure-fixed-minor-versions-released-feb-14-2019/">Blog</a>
+          </section>
+        </section>
+
+        <!-- section: misc -->
+        <section>
+          <section>
+            <span class="tag">misc</span>
+            <h2>git-secret</h2>
+            <p>bash tool to store private data inside git repo</p>
+            <div>
+              <img src="https://git-secret.io/images/git-secret-big.png"/>
+            </div>
+            <a target="_blank" href="https://git-secret.io/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Grab's use of Structured logging</h2>
+            <a target="_blank" href="https://engineering.grab.com/structured-logging">Blog</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>NginX Quick Reference</h2>
+            <a target="_blank" href="https://github.com/trimstray/nginx-quick-reference/blob/master/README.md">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>How to secure linux server</h2>
+            <a target="_blank" href="https://github.com/imthenachoman/How-To-Secure-A-Linux-Server">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Segment startup program</h2>
+            <p>Free for startups for 2 years</p>
+            <a target="_blank" href="https://segment.com/industry/startups/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>ACME is IETF standard</h2>
+            <p>IETF has standardized the ACME protocol as RFC 8555</p>
+            <a target="_blank" href="https://letsencrypt.org/2019/03/11/acme-protocol-ietf-standard.html">Site</a>
+          </section>
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: large;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+    <script>
+      Reveal.addEventListener('iframe-scroller', function() {
+        setTimeout(function() {
+          document.getElementById('iframe-scroller').src = "https://malcolm.cloudflare.com/#snapshot-chart-global";
+        }, 1000);
+      }, false);
+    </script>
+  </body>
+</html>
