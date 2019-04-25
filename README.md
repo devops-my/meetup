@@ -34,4 +34,4 @@ Many thanks to venue sponsors for hosting our meetups at no costs, and sometimes
 - [REA Group](https://www.rea-group.com/)
 - [FashionValet](https://www.fashionvalet.com/)
 
-Make sure to check out [DevKami](devkami.com)!
+Make sure to check out [DevKami](https://devkami.com/page/meetups/)!
