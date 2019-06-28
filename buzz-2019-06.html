@@ -1,0 +1,447 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #11</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+      .reveal ul li code,
+      .reveal p code {
+          background-color: #555;
+          padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #12</h1>
+          <h2>AWS Malaysia</h2>
+          <h3>25th June 2019</h3>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <h1>900+ members</h1>
+          <img class="stretch" alt="Aw Yeah" src="img/awyeah.gif"/>
+        </section>
+
+        <!-- section: intro -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineers.my/">https://engineers.my/</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h2>Other meetups</h2>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/meetups/">https://devkami.com/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Azuan (@alienxp03): <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- section: news -->
+        <section>
+          <section>
+            <span class="tag">news</span>
+            <h2>Docker - Unauthorized access to Docker Hub database</h2>
+            <a target="_blank" href="https://success.docker.com/article/docker-hub-user-notification">Article</a> |
+            <a target="_blank" href="https://news.ycombinator.com/item?id=19763413">HN</a>
+          </section>
+          <section>
+            <span class="tag">news</span>
+            <blockquote class="stretch" style="font-size: smaller; text-align: left;">
+              If you got an email you should:<br/>
+              - Change your password on <a href="https://github.com/settings/security">https://hub.docker.com</a><br/>
+              - Check <a href="https://github.com/settings/security">https://github.com/settings/security</a><br/>
+              - Reconnect oauth for Automated Builds<br/>
+              - Roll over effected passwords and API keys stored in private repos / containers<br/>
+              <br/>
+              Quick take:<br/>
+              - Password hashes<br/>
+              - Github tokens<br/>
+              - Bitbucket tokens<br/>
+              - Your Automated Builds might need new tokens
+            </blockquote>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Salesfarce: Cloud giant in multi-hour meltdown after database blunder grants users access to all data</h2>
+            <a target="_blank" href="https://www.theregister.co.uk/2019/05/17/salesforce_database_outage/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Azure global outage</h2>
+            <p class="fragment">Our DNS update mangled domain records, says Microsoft.</p>
+            <p class="fragment">Azure, Microsoft 365, Dynamics, Power BI, DevOps, all down for nearly two hours.</p>
+            <a target="_blank" href="https://www.zdnet.com/article/azure-global-outage-our-dns-update-mangled-domain-records-says-microsoft/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>GCalendar down</h2>
+            <p class="fragment">Few hours</p>
+            <p class="fragment">Sites depending on Calendar API down. Coz google won't go down right?</p>
+            <a target="_blank" href="https://www.google.com/appsstatus#hl=en&v=issue&sid=2&iid=cc21ebe3962430b2e4ae2b52e3dde98f">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>MS announces Windows Terminal and WSL 2, coming June</h2>
+            <p class="fragment">Also check out <a href="https://github.com/microsoft/PowerToys">PowerToys!</a></p>
+            <br/>
+            <a target="_blank" href="https://venturebeat.com/2019/05/06/microsoft-windows-terminal-wsl-2-coming-june/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>HiveMQ Goes Open Source, Brings MQTT and Kafka Together</h2>
+            <a target="_blank" href="https://www.infoq.com/news/2019/04/hivemq-extension-kafka-mqtt">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>GitHub gets a package registry</h2>
+            <a target="_blank" href="https://github.blog/2019-05-10-introducing-github-package-registry/">Github</a> |
+            <a target="_blank" href="https://techcrunch.com/2019/05/10/github-gets-a-package-registry/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>New Intel security flaw affects CPUs as far back as 2008</h2>
+            <a target="_blank" href="https://www.pcgamer.com/new-intel-security-flaw-affects-cpus-as-far-back-as-2008/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>VMware to Acquire Bitnami</h2>
+            <a target="_blank" href="https://cloud.vmware.com/community/2019/05/15/vmware-to-acquire-bitnami/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>NASA hacked: unauthorized Raspberry Pi in network</h2>
+            <a target="_blank" href="https://www.zdnet.com/article/nasa-hacked-because-of-unauthorized-raspberry-pi-connected-to-its-network/">Article</a>
+          </section>
+
+        </section>
+
+        <!-- section: docker -->
+        <section>
+
+          <section>
+            <span class="tag">docker</span>
+            <h2>Security Landscape of the Docker Ecosystem and Best Practices</h2>
+            <ul>
+              <li class="fragment" style="font-size: smaller;">Snyk found that security vulnerabilities in RedHat Enterprise Linux, Ubuntu and Debian grew four fold in 2018.</li>
+              <li class="fragment" style="font-size: smaller;">Most vulnerabilities come from libraries you don’t explicitly use. In most ecosystems, 75% or more of your dependencies are indirect, implicitly pulled in by the libraries you use and Snyk found that 78% of overall vulnerabilities tracked are from indirect dependencies.</li>
+            </ul>
+            <a target="_blank" href="https://www.infoq.com/news/2019/04/docker-security-landscape-snyk">Article</a>
+          </section>
+
+        </section>
+
+        <!-- section: k8s -->
+        <section>
+
+          <section>
+            <span class="tag">k8s</span>
+            <h2>Tinder’s move to Kubernetes</h2>
+            <a target="_blank" href="https://medium.com/tinder-engineering/tinders-move-to-kubernetes-cda2a6372f44">Medium</a>
+          </section>
+
+          <section>
+            <span class="tag">k8s</span>
+            <h2>Develop Hundreds of k8s Services at Scale with Airbnb</h2>
+            <a target="_blank" href="https://www.infoq.com/presentations/airbnb-kubernetes-services">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">k8s</span>
+            <h2>k14s</h2>
+            <p>
+            Kubernetes Tools that follow Unix philosophy to be simple, modular, and extensible<br/>
+              <span class="fragment">Your k8s project name ideas:</span>
+              <ul style="font-size: smaller;" class="fragment">
+                <li>k1s</li>
+                <li>k2s</li>
+                <li>k4s</li>
+                <li>...</li>
+              </ul>
+            </p>
+            <a target="_blank" href="https://github.com/k14s">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">k8s</span>
+            <h2>Again: k8s failure stories</h2>
+            <a target="_blank" href="https://github.com/hjacobs/kubernetes-failure-stories">Article</a>
+          </section>
+
+        </section>
+
+        <!-- section: aws -->
+        <section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>S3 Batch Operations</h2>
+            <blockquote class="stretch"><span class="fragment">
+                &hellip; The transfer cost from S3-&gt;Glacier is absolutely insane ($0.05 per 1,000 objects). <br/>I managed to generate <strong>$11k</strong> worth of charges doing a "small" test of 218M files and a lifecycle policy. Only use glacier for large individual files. &mdash; HN</span>
+            </blockquote>
+            <div class="fragment" style="font-size: smaller;">As always, be aware of the costs</div>
+            <a target="_blank" href="https://aws.amazon.com/blogs/aws/new-amazon-s3-batch-operations/">Article</a> |
+            <a target="_blank" href="https://news.ycombinator.com/item?id=19793110">HN</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Dot in S3 bucket name &mdash; Don't!</h2>
+            <a target="_blank" href="https://github.com/boto/boto/issues/2836">Github Issue</a>
+          </section>
+
+        </section>
+
+        <!-- section: cloud -->
+        <section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h3>DevOps and Cloud InfoQ Trends Report - February 2019</h3>
+            <ul style="font-size: smaller;" class="stretch">
+              <li class="fragment">Kubernetes has effectively cornered the market for container orchestration, and is arguably becoming the cloud-agnostic compute abstraction. The next hot topics in this space appear to be <strong>service meshes</strong> and developer experience/workflow tooling.</li>
+              <li class="fragment">Chaos Engineering has moved into the early adoption phase.</li>
+              <li class="fragment">Although a potentially overloaded buzzword, we are tracking <strong>AIOps</strong> within the innovator space, and more specifically the potential value offered by ML for operational insight and alerting.</li>
+            </ul>
+            <a target="_blank" href="https://www.infoq.com/articles/devops-cloud-trends-2019">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h3>5 Common Misconceptions About Serverless in 2019</h3>
+            <ul style="font-size: smaller;" class="stretch">
+              <li class="fragment">Serverless is a new frontier <span class="fragment">(<a href="https://www.stackery.io/pdf/serverless-infographic-2019.pdf">infographic</a>)</span></li>
+              <li class="fragment"><code>Serverless==Functions</code> <span class="fragment">(Still have to think about API Gateways, DBs, etc)</span></li>
+              <li class="fragment">Serverless is a security nightmare!</li>
+              <li class="fragment">Serverless is super cheap</li>
+              <li class="fragment">Serverless is super expensive <span class="fragment">(for AWS, use CloudWatch)</span></li>
+            </ul>
+            <a target="_blank" href="https://www.stackery.io/blog/common-misconceptions/">Site</a>
+          </section>
+
+        </section>
+
+
+        <!-- section: CI/CD -->
+        <section>
+          <section>
+            <span class="tag">cicd</span>
+            <h3>Terraform AWS backend for remote state files with S3 and DynamoDB</h3>
+            <p class="fragment" style="font-size: smaller;">
+            Terraform state files are normally generated locally where you run the scripts. This is fine for small scale deployments and testing. A problem arises when you involve multiple people, teams and even business units. 
+            </p>
+            <p class="fragment" style="font-size: smaller;">
+            A remote state file will always contain the latest state deployed to your account and environment, stored within S3. Including DynamoDB brings tracking functionality so that concurrent use of the state file will be blocked or “locked”.
+            </p>
+            <a target="_blank" href="http://aws-cloud.guru/terraform-aws-backend-for-remote-state-files-with-s3-and-dynamodb/">Site</a>
+          </section>
+        </section>
+
+        <!-- section: misc -->
+        <section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Shopify: Benchmarking Istio &amp; Linkerd CPU</h2>
+            <a target="_blank" href="https://medium.com/@michael_87395/benchmarking-istio-linkerd-cpu-c36287e32781">Medium</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Cloud Solutions Architecture Patterns</h2>
+            <p class="stretch">
+              <img src="https://cdn-images-1.medium.com/max/2000/0*fpieZqCqqJRgTBd8.png"/>
+            </p>
+            <div style="font-size:x-small;">k8s pattern</div>
+            <a target="_blank" href="https://github.com/chanakaudaya/solutions-architecture-patterns">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>16 blogs and newsletters for DevOps practitioners</h2>
+            <a target="_blank" href="https://opensource.com/article/18/6/devops-blogs-newsletters-follow">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>7 open source tools for rugged DevOps</h2>
+            <ul>
+              <li class="fragment">Gauntlt: BDD security tool</li>
+              <li class="fragment">HashiCorp Vault: Secrets management</li>
+              <li class="fragment">OWASP Dependency Check</li>
+              <li class="fragment">Retire.js: Insecure JS libs</li>
+              <li class="fragment">ChaoSlingr: Chaos engineering</li>
+              <li class="fragment">Chef's InSpec: Secure configuration &amp; compliance validation</li>
+            </ul>
+            <a target="_blank" href="https://opensource.com/article/18/9/open-source-tools-rugged-devops">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <ul>
+              <li class="fragment">OpenControl and Compliance Masonry: Compliance as code</li>
+            </ul>
+            <pre class="stretch"><code class="fragment" data-trim>
+              documentation_complete: false
+              name: AWS Implementation
+              schema_version: 3.0.0
+              references:
+              - name: SC Policy
+               path: https://github.com/opencontrol/freedonia-aws-compliance/wiki/Security-Controls
+               type: URL
+              satisfies:
+              - control_key: AU-2
+               standard_key: NIST-800-53
+               covered_by: []
+               implementation_status: none
+               narrative:
+                - text: |
+                      AU-2 - Audit Events
+                      All AWS events are sent to AWS CloudWatch.
+                      This is implemented with our Terraform build using the
+                  `aws_cloudtrail` resource (https://www.terraform.io/docs/providers/aws/r/cloudtrail.html)
+            </code></pre>
+            <a target="_blank" href="https://opensource.com/article/18/9/open-source-tools-rugged-devops">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>IoT &amp; WebThings</h2>
+            <a target="_blank" href="https://iot.mozilla.org/">IoT</a> |
+            <a target="_blank" href="https://iot.mozilla.org/framework/">WebThings</a>
+          </section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Chaos Engineering: Chaos Testing Your HTTP Micro-Services</h2>
+            <a target="_blank" href="https://hackernoon.com/chaos-engineering-chaos-testing-your-http-micro-services-acc99d145515">Article</a>
+          </section>
+
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: large;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+    <script>
+      Reveal.addEventListener('iframe-scroller', function() {
+        setTimeout(function() {
+          document.getElementById('iframe-scroller').src = "https://malcolm.cloudflare.com/#snapshot-chart-global";
+        }, 1000);
+      }, false);
+    </script>
+  </body>
+</html>
