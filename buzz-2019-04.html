@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #10</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+      .reveal ul li code,
+      .reveal p code {
+          background-color: #555;
+          padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #10</h1>
+          <h2>MindValley</h2>
+          <h3>16th April 2019</h3>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <h1>800+ members</h1>
+          <img class="stretch" alt="Aw Yeah" src="img/awyeah.gif"/>
+        </section>
+
+        <!-- section: intro -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineersmy.herokuapp.com">https://engineersmy.herokuapp.com</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h2>Other meetups</h2>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/meetups/">https://devkami.com/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Azuan (@alienxp03): <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- section: news -->
+        <section>
+          <section>
+            <span class="tag">news</span>
+            <h2>McDonald's bites on Big Data with $300 million acquisition</h2>
+            <a target="_blank" href="https://www.wired.com/story/mcdonalds-big-data-dynamic-yield-acquisition/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Malicious remote code execution backdoor in bootstrap-sass Ruby gem</h2>
+            <a target="_blank" href="https://snyk.io/blog/malicious-remote-code-execution-backdoor-discovered-in-the-popular-bootstrap-sass-ruby-gem/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Leading DevOps program Chef goes all in with open source</h2>
+            <a target="_blank" href="https://www.zdnet.com/google-amp/article/leading-devops-program-chef-goes-all-in-with-open-source/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Stack Overflow Developer Survey Results 2019</h2>
+            <ul>
+              <li>Malaysia 0.66% of monthly visit</li>
+              <li class="fragment">Python risen in ranks yet again!</li>
+              <li class="fragment">DevOps specialists and site reliability engineers are among the highest paid, most experienced developers most satisfied with their jobs, and are looking for new jobs at the lowest levels.</li>
+            </ul>
+            <br/>
+            <a target="_blank" href="https://insights.stackoverflow.com/survey/2019">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Productivity boost mystery explained:</h2>
+            <h3 class="fragment">Facebook, Instagram, and WhatsApp were down for more than two hours</h3>
+            <a target="_blank" href="https://www.theverge.com/2019/4/14/18310069/facebook-instagram-whatsapp-down-outage-issues">Article</a>
+          </section>
+
+        </section>
+
+        <!-- section: cloud -->
+        <section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Google Cloud Next '19 OnAir</h2>
+            <a target="_blank" href="https://cloud.withgoogle.com/next/sf/next-onair">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Google Cloud Services Platform—bringing hybrid cloud to you</h2>
+            <p>Discover and deploy preconfigured One-Click Applications</p>
+            <a target="_blank" href="https://cloud.google.com/blog/products/gcp/cloud-services-platform-bringing-hybrid-cloud-to-you">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Anthos</h2>
+            <image class="stretch" src="https://cloud.google.com/images/anthos/diagram.png" />
+            <p>build and manage modern hybrid applications across environments</p>
+            <a target="_blank" href="https://cloud.google.com/anthos/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Google Actual Cloud</h2>
+            <a target="_blank" href="https://cloud.google.com/actual-cloud/">Site</a>
+          </section>
+
+        </section>
+
+        <!-- section: k8s -->
+        <section>
+
+          <section>
+            <span class="tag">k8s</span>
+            <h2>Learn Kubernetes</h2>
+            <a target="_blank" href="https://learnk8s.io/">Site</a>
+          </section>
+
+        </section>
+
+        <!-- section: Tools -->
+        <section>
+
+          <section>
+            <span class="tag">tools</span>
+            <h2>DevOps Tools</h2>
+            <a target="_blank" href="https://github.com/collections/devops-tools">Github</a>
+          </section>
+
+          <section>
+            <span class="tag">tools</span>
+            <h2>MockServer</h2>
+            <p>Easy mocking of any system you integrate with via HTTP or HTTPS</p>
+            <ul style="font-size: smaller;">
+              <li class="fragment">return mock response</li>
+              <li class="fragment">forward a request</li>
+              <li class="fragment">execute callback</li>
+              <li class="fragment">return invalid response</li>
+              <li class="fragment">verify request has been sent</li>
+              <li class="fragment">retrieve logs, requests or expectations for debugging</li>
+            </ul>
+            <br/>
+            <a target="_blank" href="http://www.mock-server.com/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">tools</span>
+            <h2>Perforps: Global Traffic Management with Flexible Load-Balancers</h2>
+            <a target="_blank" href="https://perfops.net/">Site</a>
+          </section>
+
+        </section>
+
+        <!-- section: misc -->
+        <section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Intermediate Python</h2>
+            <a target="_blank" href="https://book.pythontips.com/en/latest/">Site</a>
+          </section>
+
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: large;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+    <script>
+      Reveal.addEventListener('iframe-scroller', function() {
+        setTimeout(function() {
+          document.getElementById('iframe-scroller').src = "https://malcolm.cloudflare.com/#snapshot-chart-global";
+        }, 1000);
+      }, false);
+    </script>
+  </body>
+</html>
