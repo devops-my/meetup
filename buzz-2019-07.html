@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #13</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+      .reveal ul li code,
+      .reveal p code {
+          background-color: #555;
+          padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #13</h1>
+          <h2>CIMB</h2>
+          <h3>16th July 2019</h3>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <h1>1000+ members</h1>
+          <img class="stretch" alt="Aw Yeah" src="img/awyeah.gif"/>
+        </section>
+
+        <!-- section: intro -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineers.my/">https://engineers.my/</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+          </section>
+          <section>
+            <p>
+              Monthly meetup announced on meetup.com
+              <br/>
+              Get in touch via meetup.com
+              <br/>
+              or
+              <br/>
+              Slack us to volunteer / speak / sponsor
+            </p>
+          </section>
+
+          <section>
+            <h2>Other meetups</h2>
+            <p class="fragment">
+              DevKami curated meetups: <a data-preview-link href="https://devkami.com/meetups/">https://devkami.com/meetups/</a>
+            </p>
+            <p class="fragment">
+              KL meetups by Azuan (@alienxp03): <a data-preview-link href="http://malaysia.herokuapp.com/#upcoming">http://malaysia.herokuapp.com/#upcoming</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- section: news -->
+        <section>
+          <section>
+            <span class="tag">news</span>
+            <h2>July 2nd: Cloudflare Outage</h2>
+            <a target="_blank" href="https://blog.cloudflare.com/details-of-the-cloudflare-outage-on-july-2-2019/">Postmortem</a> |
+            <a target="_blank" href="https://www.cloudflarestatus.com/incidents/tx4pgxs6zxdr">Incident Page</a>
+          </section>
+          <section>
+            <span class="tag">news</span>
+            <blockquote style="font-size: smaller; text-align: left;">
+              <h3>502 Errors</h3>
+              Major outage impacted all Cloudflare services globally. We saw a massive spike in CPU that caused primary and secondary systems to fall over. We shut down the process that was causing the CPU spike. <br /><br/>Service restored to normal within ~30 minutes. We’re now investigating the root cause of what happened.
+            </blockquote>
+          </section>
+          <section>
+            <span class="tag">news</span>
+            <blockquote style="font-size: smaller; text-align: left;">
+              <h3>Bad Config Deploy</h3>
+              On July 2, we deployed a new rule in our WAF Managed Rules that caused CPUs to become exhausted on every CPU core that handles HTTP/HTTPS traffic on the Cloudflare network worldwide.
+              <br/><br/>
+              <span class="fragment">
+              &hellip;update contained a <strong style="font-size: larger;">regular expression</strong> that backtracked enormously and exhausted CPU used for HTTP/HTTPS serving
+              </span>
+            </blockquote>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>July 2nd: GCloud Network Issues</h2>
+            <ul>
+              <li>Google Cloud networking issues in us-east-1</li>
+              <li>physical damage to multiple concurrent fiber bundles serving network paths in us-east1</li>
+            </ul>
+            <br/>
+            <a target="_blank" href="https://status.cloud.google.com/incident/cloud-networking/19016">Incident Page</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>July 4th: FB, IG and WhatsApp are down in Malaysia, worldwide</h2>
+            <p class="fragment">US celebrates Independence Day by liberating people from social media slavery</p>
+            <p class="fragment">&hellip;kidding</p>
+            <a target="_blank" href="https://www.malaymail.com/news/tech-gadgets/2019/07/03/facebook-instagram-and-whatsapp-are-down-in-malaysia-worldwide/1768008">MalayMail</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>July 5th: Apple iCloud Experiencing Issues</h2>
+            <a target="_blank" href="https://news.ycombinator.com/item?id=20356141">HN</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>July 11th: Twitter outage</h2>
+            <a target="_blank" href="https://status.twitterstat.us/pages/incident/564314ae3309c22c3b0002fa/5d2786d7d1fca743f20be3f3">Status Page</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>IBM acquires RedHat</h2>
+            <p>
+            $34bil acquisition
+            </p>
+            <a target="_blank" href="https://www.cnbc.com/2019/07/09/ibm-closes-its-34-billion-acquisition-of-red-hat.html">Article</a>
+          </section>
+
+
+        </section>
+
+        <!-- section: docker -->
+        <section>
+
+          <section>
+            <span class="tag">docker</span>
+            <h2>lazydocker</h2>
+            <p>A simple terminal UI for both docker and docker-compose</p>
+            <img class="stretch" src="https://github.com/jesseduffield/lazydocker/raw/master/docs/resources/demo3.gif"/>
+            <br/>
+            <a target="_blank" href="https://github.com/jesseduffield/lazydocker">GitHub</a>
+          </section>
+
+        </section>
+
+        <!-- section: cloud -->
+        <section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Linus Torvalds: Lots of Hardware Headaches Ahead</h2>
+            <ul style="font-size: smaller;">
+              <li>steady stream of patches being generated as new cybersecurity issues related to the speculative execution model that Intel and other processor vendors rely on</li>
+              <li class="fragment">Each of those bugs requires another patch to the Linux kernel that, depending on when they arrive, can require painful updates to the kernel</li>
+              <li class="fragment">Trade-offs such as reduction of application performance by about 15%</li>
+            </ul>
+            <a target="_blank" href="https://devops.com/linus-torvalds-sees-lots-of-hardware-headaches-ahead/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <ul>
+              <li>as processor vendors approach the limits of Moore’s Law, many developers will need to reoptimize their code to continue achieving increased performance</li>
+              <li class="fragment">that requirement will be a shock to many development teams that have counted on those performance improvements to make up for <strong style="font-size: larger;">inefficient coding processes</strong></li>
+            </ul>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Linode: Introducing GPU Instances</h2>
+            <img class="stretch" src="https://blog.linode.com/wp-content/uploads/2019/06/gpuplans2.png"/>
+            <br/>
+            <a target="_blank" href="https://blog.linode.com/2019/06/19/introducing-linode-gpu-instances/">Blog</a>
+          </section>
+
+
+        </section>
+
+        <!-- section: windows -->
+        <section>
+            <span class="tag">windows</span>
+            <h2>Windows: Logging Made Easy</h2>
+            <a target="_blank" href="https://www.ncsc.gov.uk/blog-post/logging-made-easy">Article</a> |
+            <a target="_blank" href="https://github.com/ukncsc/lme">GitHub</a>
+
+        </section>
+
+        <!-- section: aws -->
+        <section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Annoying state of lambda observability</h2>
+            <a target="_blank" href="https://medium.com/@lukedemi/the-annoying-state-of-lambda-observability-465470403846">Article</a>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <p>Strategies boil down to either:</p>
+            <ul>
+              <li><strong>Send</strong> telemetry directly to external observability tools during Lambda execution</li>
+              <li><strong>Scrape</strong> or trigger off the telemetry sent to CloudWatch and X-Ray to populate external providers</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Send</h3>
+            <img class="stretch" src="https://miro.medium.com/max/1260/0*7GJk_PuQ68WruY9k"/>
+          </section>
+          <section>
+            <h3>Send</h3>
+            <p>Pros</p>
+            <ul>
+              <li>No additional infrastructure is required within AWS, since the telemetry is sent directly to the provider.</li>
+              <li>Telemetry is low latency. As soon as the Lambda function returns, we can feel secure that our events are being processed by our provider.</li>
+              <li>No additional cost is incurred to process events after the fact</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Send</h3>
+            <p>Cons</p>
+            <ul>
+              <li>telemetry must either be sent across the network as events occur or batched into a report sent at the conclusion of the function’s execution (but before returning success)</li>
+              <li>users must be comfortable either losing some of their events, or pay a latency penalty to send telemetry on every single Lambda invocation</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Scrape</h3>
+            <img class="stretch" src="https://miro.medium.com/max/1260/0*9j43cftE4-FFGb7E"/>
+          </section>
+          <section>
+            <h3>Scrape</h3>
+            <p style="font-size: smaller;">The most common approach to bypass the per-invocation performance penalty of the “Send” approach is to instead “Scrape” CloudWatch and X-Ray to gather metrics/logs/traces into your provider of choice.</p>
+            <p class="fragment">Pro: users are able to save latency Lambda invocations</p>
+            <p class="fragment">Con: build (potentially expensive) Rube Goldberg style machines to relay and scrape logs and traces from AWS’s products</p>
+          </section>
+          <section>
+            <h3>Both approach not ideal</h3>
+            <p class="fragment">&hellip;rather than force users to build elaborate systems to “scrape” or IPC messages from inside Lambda functions, AWS could provide some type of UDP listening agent on each Lambda host — these agents could perform a similar function to the existing X-Ray agent, but rather than send events to AWS’s X-Ray service, forward them to a customer owned Kinesis Stream. Maybe even call them Lambda Event Streams</p>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>ECS now offers improved capabilities for local testing</h2>
+            <a target="_blank" href="https://aws.amazon.com/about-aws/whats-new/2019/07/amazon-ecs-now-offers-improved-capabilities-for-local-testing/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Aurora PostgreSQL supports Serverless</h2>
+            <a target="_blank" href="https://aws.amazon.com/blogs/aws/amazon-aurora-postgresql-serverless-now-generally-available/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>AWS Toolkit for VSCode</h2>
+            <a target="_blank" href="https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html">Manual</a> |
+            <a target="_blank" href="https://github.com/aws/aws-toolkit-vscode">GitHub</a>
+          </section>
+
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: large;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+    <script>
+      Reveal.addEventListener('iframe-scroller', function() {
+        setTimeout(function() {
+          document.getElementById('iframe-scroller').src = "https://malcolm.cloudflare.com/#snapshot-chart-global";
+        }, 1000);
+      }, false);
+    </script>
+  </body>
+</html>
