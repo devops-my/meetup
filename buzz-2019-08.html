@@ -1,0 +1,292 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #14</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+      .reveal ul li code,
+      .reveal p code {
+          background-color: #555;
+          padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #14</h1>
+          <h2>Microsoft</h2>
+          <h3>20th August 2019</h3>
+          <span style="font-size: 0.7em;">Slides: <a href="https://devops-my.github.io/meetup">devops-my.github.io/meetup</a></span>
+        </section>
+
+        <!-- section: intro -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineers.my/">engineers.my</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+            <p>
+              Monthly meetup announced on <a href="https://meetup.com/DevOpsMalaysia/">meetup.com</a>
+              <br/>
+              Slack us in <code>#meetups</code> to volunteer / speak
+            </p>
+          </section>
+
+          <section>
+            <h2>Other meetups</h2>
+            <p>
+              DevKami curated meetups: <a style="font-size: 2em;" data-preview-link href="https://devkami.com/meetups/">devkami.com/meetups</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- section: news -->
+        <section>
+          <section>
+            <span class="tag">news</span>
+            <h2>GitHub confirms it has blocked developers in Iran, Syria and Crimea</h2>
+            <a target="_blank" href="https://techcrunch.com/2019/07/29/github-ban-sanctioned-countries/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>IBM unveils trio of open source k8s projects</h2>
+            <ul>
+              <li>Kabanero</li>
+              <li>Appsody</li>
+              <li>Codewind</li>
+            </ul>
+            <br/>
+            <a target="_blank" href="https://devclass.com/2019/07/16/ibm-unveils-trio-of-open-source-kubernetes-projects-and-not-a-red-hat-trick-in-sight/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>GCloud makes it easier to set up continuous delivery with Spinnaker</h2>
+            <a target="_blank" href="https://techcrunch.com/2019/07/22/google-cloud-makes-it-easier-to-set-up-continuous-delivery-with-spinnaker/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>LinkedIn is migrating to Microsoft Azure</h2>
+            <a target="_blank" href="https://venturebeat.com/2019/07/23/linkedin-is-migrating-to-microsoft-azure/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>8M lines of hotel-related code exposed in latest Elasticsearch db config failure </h2>
+            <a target="_blank" href="https://siliconangle.com/2019/07/16/8m-hotel-records-exposed-latest-elasticsearch-database-configuration-fail/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>AWS gets a chatbot</h2>
+            <p>The bot hooks into the SNS, which in turn allows you to integrate it with other AWS services. Right now, that list includes CloudWatch, AWS Health, Budgets, Security Hub, GuardDuty and CloudFormation.</p>
+            <a target="_blank" href="https://techcrunch.com/2019/07/25/aws-gets-a-chatbot/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>One Misconfig (JIRA) to Leak Them All</h2>
+            <p>When the filters and dashboards for the projects/issues are created in JIRA, then by default the visibility is set to “All users” and “Everyone” respectively, which instead of sharing with everyone of the organizations (which people think and interpret), it share them publically. </p>
+            <a target="_blank" href="https://medium.com/@logicbomb_1/one-misconfig-jira-to-leak-them-all-including-nasa-and-hundreds-of-fortune-500-companies-a70957ef03c7">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>GitHub Actions</h2>
+            <a target="_blank" href="https://github.com/features/actions">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>k8s reports the results of its open-source security audit</h2>
+            <a target="_blank" href="https://www.zdnet.com/article/kubernetes-reports-the-results-of-its-open-source-security-audit/">Article</a>
+          </section>
+
+
+        </section>
+
+        <!-- section: container -->
+        <section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>Fire Up Your VMs with Weave Ignite</h2>
+            <blockquote>Weaveworks Ignite uses Firecracker to boot microVMs from OCI container images. This means you just need to <code>'runignite run'</code> instead of <code>'docker run'</code> and you get a microVM running on firecracker running that image.</blockquote>
+            <a target="_blank" href="https://www.weave.works/blog/fire-up-your-vms-with-weave-ignite">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">container</span>
+            <h2>spekt8 - Visualize k8s cluster</h2>
+            <a target="_blank" href="https://github.com/spekt8/spekt8">Github</a>
+          </section>
+
+        </section>
+
+        <!-- section: serverless -->
+        <section>
+
+          <section>
+            <span class="tag">serverless</span>
+            <h2>Securing serverless on aws (slides)</h2>
+            <a target="_blank" href="https://speakerdeck.com/danilop/serverless-security-workshop">Deck</a>
+          </section>
+
+          <section>
+            <span class="tag">serverless</span>
+            <h2>How We Reduced Lambda Functions Costs by Thousands of Dollars</h2>
+            <ul>
+              <li>&gt; 80M invocations/day costing &gt; $1k/day</li>
+              <li class="fragment">before giving up, get insight</li>
+              <li class="fragment">collect metrics and optimize memory, invocation count &amp; running time</li>
+              <li class="fragment">profit</li>
+            </ul>
+            <a target="_blank" href="https://medium.com/foxintelligence-inside/how-we-reduced-lambda-functions-costs-by-thousands-of-dollars-8279b0a69931">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Injecting Chaos to AWS Lambda functions with Lambda Layers</h2>
+            <a target="_blank" href="https://medium.com/@adhorn/failure-injection-gain-confidence-in-your-serverless-application-ce6c0060f586">Article</a> |
+            <a target="_blank" href="https://github.com/gunnargrosch/serverless-chaos-demo">Code Demo</a>
+          </section>
+
+        </section>
+
+        <!-- section: db -->
+        <section>
+
+          <section>
+            <span class="tag">db</span>
+            <h2>YugaByte: The high-perf distributed SQL database</h2>
+            <a target="_blank" href="https://github.com/YugaByte/yugabyte-db">GitHub</a>
+          </section>
+
+          <section>
+            <span class="tag">db</span>
+            <h2>PartiQL</h2>
+            <p>Query language for all your data</p>
+            <img src="https://partiql.org/assets/animated-example.gif" class="stretch"/>
+            <br/>
+            <a target="_blank" href="https://aws.amazon.com/blogs/opensource/announcing-partiql-one-query-language-for-all-your-data/">Article</a>
+          </section>
+
+        </section>
+
+        <!-- section: misc -->
+        <section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>Refinery</h2>
+            <video class="stretch" playsinline="" controls="" autoplay="" muted="" loop="">
+              <source src="https://docs.refinery.io/homepage-assets/create-api-endpoint-homepage-example.webm" type="video/webm">
+              <source src="https://docs.refinery.io/homepage-assets/create-api-endpoint-homepage-example.mp4" type="video/mp4">
+            </video>
+            <a target="_blank" href="https://www.refinery.io/">Site</a>
+          </section>
+
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: large;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+    <script>
+      Reveal.addEventListener('iframe-scroller', function() {
+        setTimeout(function() {
+          document.getElementById('iframe-scroller').src = "https://malcolm.cloudflare.com/#snapshot-chart-global";
+        }, 1000);
+      }, false);
+    </script>
+  </body>
+</html>
