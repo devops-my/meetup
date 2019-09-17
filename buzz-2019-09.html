@@ -1,0 +1,432 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DevOps Malaysia #15</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <style>
+      .reveal ul li code,
+      .reveal p code {
+          background-color: #555;
+          padding: 2px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- slide -->
+        <section>
+          <h1>DevOps Meetup #15</h1>
+          <h2>AWS</h2>
+          <h3>17th September 2019</h3>
+          <span style="font-size: 0.7em;">Slides: <a href="https://devops-my.github.io/meetup">devops-my.github.io/meetup</a></span>
+        </section>
+
+        <!-- section: intro -->
+        <section>
+          <section>
+            <h1>Who we are</h1>
+          </section>
+          <section>
+            <p>
+              Volunteers (hangs around EngineersMY slack)
+              <a href="https://engineers.my/">engineers.my</a>
+              <br/>
+              <h4>Join us!</h4>
+            </p>
+            <p>
+              Monthly meetup announced on <a href="https://meetup.com/DevOpsMalaysia/">meetup.com</a>
+              <br/>
+              Slack us in <code>#meetups</code> to volunteer / speak
+            </p>
+          </section>
+
+          <section>
+            <h2>Other meetups</h2>
+            <p>
+              DevKami curated meetups: <a style="font-size: 2em;" data-preview-link href="https://devkami.com/meetups/">devkami.com/meetups</a>
+            </p>
+          </section>
+
+          <section>
+            <h2>House rules</h2>
+          </section>
+          <section>
+            <ul>
+              <li>Minimal bikeshedding</li>
+              <li class="fragment">Participate!</li>
+              <li class="fragment">Respect opinions &mdash; agree to disagree!</li>
+              <li class="fragment">Thank the organizers &amp; sponsors!</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- slide -->
+        <section>
+          <section>
+            <h1>Buzz Corner</h1>
+          </section>
+        </section>
+
+        <!-- section: news -->
+        <section>
+          <section>
+            <span class="tag">news</span>
+            <h2>Teletext Holiday leak</h2>
+            <p>200k call recordings stored in insecure S3 bucket</p>
+            <a target="_blank" href="https://www.theregister.co.uk/2019/09/02/teletext_holidays_200k_call_recordings_s3_bucket/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>AWS US-EAST-1 Power Outage</h2>
+            <p>AWS celebrates Labor Day weekend by roasting customer data in US-East-1 BBQ</p>
+            <p>
+              <blockquote>When the power went out, and backup generators subsequently failed, some virtual server instances evaporated – and some cloud-hosted volumes were destroyed and had to be restored from backups, where possible</blockquote>
+            </p>
+            <a target="_blank" href="https://www.theregister.co.uk/2019/09/04/aws_power_outage_data_loss/">Article</a>
+          </section>
+          <section>
+            <span class="tag">news</span>
+            <code>@PragmaticAndy</code>
+            <blockquote>AWS had a power failure, their backup generators failed, which killed their EBS servers, which took all of our data with it. Then it took them four days to figure this out and tell us about it.</blockquote>
+            <blockquote class="fragment">Reminder: The cloud is just a computer in Reston with a bad power supply.</blockquote>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Sunsetting Mercurial support in Bitbucket</h2>
+            <a target="_blank" href="https://bitbucket.org/blog/sunsetting-mercurial-support-in-bitbucket">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>KLIA systems disruption</h2>
+            <h3>20 flights delayed</h3>
+            <a target="_blank" href="https://www.thestar.com.my/news/nation/2019/08/22/klia-systems-disruption-20-flights-delayed">TheStar</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>Ransomware disrupts 22 Texas Govt Deptartments</h2>
+            <a target="_blank" href="https://nakedsecurity.sophos.com/2019/08/21/ransomware-disrupts-22-texas-government-departments">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>CircleCI Security Incident</h2>
+            <a target="_blank" href="https://support.circleci.com/hc/en-us/articles/360034852194-Security-Incident-on-8-31-2019-Details-and-FAQs-">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>FB user's phone numbers exposed</h2>
+            <a target="_blank" href="https://techcrunch.com/2019/09/04/facebook-phone-numbers-exposed/">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">news</span>
+            <h2>State of DevOps report 2019</h2>
+            <a target="_blank" href="https://devops.com/the-state-of-devops-report-2019-is-out/">Article</a>
+          </section>
+
+        </section>
+
+        <!-- section: article -->
+        <section>
+
+          <section>
+            <span class="tag">article</span>
+            <h2>6 Lessons we learned when debugging a scaling problem on GitLab.com</h2>
+            <p>Intermittent ssh connection errors</p>
+            <p>at average 300 connections/sec</p>
+            <a target="_blank" href="https://www.weave.works/blog/fire-up-your-vms-with-weave-ignite">Article</a>
+          </section>
+
+          <section>
+            <span class="tag">article</span>
+            <ul class="stretch" style="font-size: smaller;">
+              <li>Lesson #1: In Wireshark, the Statistics menu has a wealth of useful tools that I’d never really noticed until this endeavor.</li>
+              <li class="fragment">Lesson #2: Apparently a lot of people have time synchronization (via NTP or otherwise) set up properly. <span class="fragment">(Clear from graph where conn errors tend to happen during first 10 seconds of the minute, suggesting cron/scheduled scripts)</span></li>
+            </ul>
+          </section>
+          <section>
+            <span class="tag">article</span>
+            <ul class="stretch" style="font-size: smaller;">
+              <li class="fragment">Lesson #3: It is polite to log interesting information at default levels and deliberately dropping a connection for any reason is definitely interesting to system administrators.  <span class="fragment">(Because they had to turn on Debug loglevel to know about  <code>MaxStartups</code> logs being breached and connections being dropped due to that)</span></li>
+              <li class="fragment">Lesson #4: When you choose specific non-default settings, leave a comment or link to documentation/issues as to why, future people will thank you. <span class="fragment">(Load balancer HAproxy became unbalanced because of <code>balance source</code> were used, with no comments to why. They didn’t need session-stickiness for SSH so there’s no reason to use that config. They changed it to <code>balance leastconn</code>)</span></li>
+            </ul>
+          </section>
+          <section>
+            <span class="tag">article</span>
+            <ul class="stretch" style="font-size: smaller;">
+              <li class="fragment">Lesson #5: As scary as it looks, MaxStartups appears to have very little performance impact even if it’s raised much higher than the default. <span class="fragment">(bumping <code>MaxStartups</code> to 250 and increasing rate-limit, drove the connection error down to 0.001%. Deploying the <code>balance leastconn</code> change, all connection errors went away)</span></li>
+              <li class="fragment">Lesson #6: Measure the actual rate of your errors as early as possible. <span class="fragment">(They think in hindsight they could’ve identify this specific failure with their initial log with termination state <code>SD</code> (S=aborted/refused by server, D=session in DATA phase) and bytes read 0)</span></li>
+            </ul>
+          </section>
+          <section>
+            <span class="tag">article</span>
+            <blockquote>But the biggest lesson is that when large numbers of people schedule jobs at round numbers on the clock, it leads to really interesting scaling problems for centralized service providers like GitLab.</blockquote>
+            <blockquote class="stretch"><span class="fragment">If you’re one of them, you might like to consider putting in a random sleep of maybe 30 seconds at the start, or pick a random time during the hour*and*put in the random sleep, just to be polite and fight the tyranny of the clock. </span></blockquote>
+          </section>
+
+
+          <section>
+            <span class="tag">article</span>
+            <h2>What happens when you open a new install of the following browsers for the 1st time</h2>
+            <a target="_blank" href="https://twitter.com/jonathansampson/status/1166005813548396549">Tweet</a>
+          </section>
+        </section>
+
+        <!-- section: aws -->
+        <section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>R53 public zones get query volume stats</h2>
+            <a target="_blank" href="https://aws.amazon.com/about-aws/whats-new/2019/08/amazon-route-53-now-publishes-query-volume-metrics-for-public-hosted-zones/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Interactive DC Map</h2>
+            <iframe class="stretch" src="https://www.infrastructure.aws/"></iframe>
+            <br/>
+            <a target="_blank" href="https://www.infrastructure.aws/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>Lambda 2019 vs 2018 cold starts</h2>
+            <a target="_blank" href="https://levelup.gitconnected.com/aws-lambda-cold-start-language-comparisons-2019-edition-%EF%B8%8F-1946d32a0244">Site</a>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <img class="stretch" src="./img/2019-09/lambda-request-lifecycle.png"/>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <img class="stretch" src="./img/2019-09/lambda-coldstarts.png"/>
+            <p>Coldstarts</p>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <img class="stretch" src="./img/2019-09/lambda-avg-coldstart-ms.png"/>
+            <p>Coldstarts Avg in ms</p>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <img class="stretch" src="./img/2019-09/lambda-avg-init-ms.png"/>
+            <p>Init in ms</p>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <img class="stretch" src="./img/2019-09/lambda-2018-coldstart-table.png"/>
+            <img class="stretch" src="./img/2019-09/lambda-2019-coldstart-table.png"/>
+            <p>2018 vs 2019</p>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <img class="stretch" src="./img/2019-09/lambda-2018-2019-coldstart-improve.png"/>
+            <p>Improvement 2018 vs 2019</p>
+          </section>
+          <section>
+            <span class="tag">aws</span>
+            <img class="stretch" src="./img/2019-09/lambda-warm-ms.png"/>
+            <p>Warm in ms</p>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>$64,944 to support 25k customers in August</h2>
+            <h3>A full breakdown of ConvertKit’s AWS bill</h3>
+            <a target="_blank" href="https://engineering.convertkit.com/2019/09/09/aws.html">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2>QLDB now available</h2>
+            <p>Ledger database.........</p>
+            <a target="_blank" href="https://aws.amazon.com/blogs/aws/now-available-amazon-quantum-ledger-database-qldb/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">aws</span>
+            <h2><code>omerh/awsctl</code></h2>
+            <p>Control AWS infrastructure easily from cli</p>
+            <pre><code data-trim>
+              # Get all EC2 events from all regions
+              awsctl get ec2 events -r all
+
+              # Delete all unused EBS in all regions
+              awsctl delete ebs --region all --yes
+
+              # Set cloudwatch logs with no expirey to 14 days expiry
+              awsctl set cloudwatch --region all --retention 14 --yes
+            </code></pre>
+            <a target="_blank" href="https://github.com/omerh/awsctl">Site</a>
+          </section>
+
+        </section>
+
+        <!-- section: cloud -->
+        <section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>A Manager's Guide to Kubernetes Adoption</h2>
+            <a target="_blank" href="https://unixism.net/2019/08/a-managers-guide-to-kubernetes-adoption/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>Cloud Design Patterns</h2>
+            <h3>Azure Architecture Center</h3>
+            <a target="_blank" href="https://docs.microsoft.com/en-us/azure/architecture/patterns/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>DigitalOcean Adds Managed MySQL and Redis Services</h2>
+            <a target="_blank" href="https://www.infoq.com/news/2019/08/digitalocean-mysql-redis/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>HashiCorp announces fully managed service mesh on Azure</h2>
+            <a target="_blank" href="https://techcrunch.com/2019/09/10/hashicorp-announces-fully-managed-service-mesh-on-azure/">Site</a>
+          </section>
+
+          <section>
+            <span class="tag">cloud</span>
+            <h2>CloudFlare Learning Center</h2>
+            <a target="_blank" href="https://www.cloudflare.com/learning/">Site</a>
+          </section>
+
+        </section>
+
+        <!-- section: tools -->
+        <section>
+
+          <section>
+            <span class="tag">tools</span>
+            <h2>CUElang</h2>
+            <p>is an open source language, with a rich set APIs and tooling, for defining, generating, and validating all kinds of data: configuration, APIs, database schemas, code, … you name it.</p>
+            <a target="_blank" href="https://cuelang.org/">Site</a>
+          </section>
+          <section>
+            <span class="tag">tools</span>
+            <pre><code data-trim>
+            ### Configuration
+            Managing text-based files to define a desired state of a system.
+
+            ### Data Validation
+            Validate text-based or programmatic data.
+
+            ### Schema Definition
+            Defining schema to communicate an API or standard.
+
+            ### Code Generation and Extraction
+            Converting CUE constraints to and from definitions in other languages.
+
+            ### Querying
+            Find data matching certain criteria.
+
+            ### Scripting
+            Make static data come to life.
+            </code></pre>
+          </section>
+
+          <section>
+            <span class="tag">tools</span>
+            <h2>goaccess</h2>
+            <p>GoAccess - Visual Web Log Analyzer</p>
+            <a target="_blank" href="https://rt.goaccess.io/?20190828082924">Live Demo</a> |
+            <a target="_blank" href="https://goaccess.io/">Site</a>
+          </section>
+
+        </section>
+
+        <!-- section: misc -->
+        <section>
+
+          <section>
+            <span class="tag">misc</span>
+            <h2>TabDB</h2>
+            <a target="_blank" href="https://tabdb.io/">Site</a>
+          </section>
+
+        </section>
+
+        <section>
+          <h1>/buzz</h1>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <style>
+      span.tag {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        font-size: large;
+      }
+      span.tag::before {
+        content: '#';
+      }
+      mark {
+        background-color: #A3A;
+      }
+    </style>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: true,
+        fragmentInURL: true,
+        pdfMaxPagesPerSlide: 1,
+        // slides away for lazy-loading
+        viewDistance: 3,
+        // don't print fragments separately (pdf)
+        pdfSeparateFragments: false,
+        dependencies: [
+          // Speaker notes
+          { src: 'plugin/notes/notes.js', async: true },
+          // Syntax highlight for <code> elements>
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          // Zoom in and out with Alt+click
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+    <script>
+      Reveal.addEventListener('iframe-scroller', function() {
+        setTimeout(function() {
+          document.getElementById('iframe-scroller').src = "https://malcolm.cloudflare.com/#snapshot-chart-global";
+        }, 1000);
+      }, false);
+    </script>
+  </body>
+</html>
