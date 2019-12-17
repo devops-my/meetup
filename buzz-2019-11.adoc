@@ -1,0 +1,102 @@
+
+[.text-center]
+== DEVOPS MEETUP #17
+pass:q[<h3>]Mudah
+
+19th November 2019
+
+Slides: https://devops-my.github.io/meetup[devops-my.github.io/meetup]
+
+
+== Community
+
+=== !
+Volunteers (hangs around EngineersMY slack) https://engineers.my[engineers.my]
+
+*JOIN US*
+
+Monthly meetup announced on meetup.com +
+Slack us in [.gray.background]`#meetups` to volunteer / speak
+
+=== OTHER MEETUPS
+DevKami curated meetups: +
+https://devkami.com/meetups[devkami.com/meetups]
+
+=== House Rules
+
+* minimal bikeshedding
+* respect opinions -- agree to disagree
+* participate
+* thank the sponsors & volunteers
+
+== BUZZCORNER
+
+
+
+== Security ==
+
+
+=== https://https://www.lowyat.net/2019/196895/universiti-malaya-staff-data-leaked-online/[Universiti Malaya Staff Personal Data, Banking and Salary Details Leaked Online]
+
+=== https://www.theregister.co.uk/AMP/2019/10/18/microsoft_azure_mfa/[MS MFA Down]
+
+ Redmond's sign-on system is so secure, nobody can get in
+
+=== https://techcrunch.com/2019/10/21/nordvpn-confirms-it-was-hacked/[NordVPN confirms it was hacked]
+
+=== https://thehackernews.com/2019/10/nginx-php-fpm-hacking.html[New PHP Flaw Could Let Attackers Hack Sites Running On Nginx Servers]
+
+
+=== https://www.computerweekly.com/news/252473363/EU-patches-20-year-old-open-source-vulnerability[20 year old vulnerability in PuTty patched by/for EU-FOSSA]
+
+ The vulnerability could potentially have allowed a malicious actor
+ to crash the programme and use it to achieve remote code execution.
+ It was first spotted on 27 June 2019 and publicly disclosed on 20 September,
+ netting its discoverer a €3,250 (£2,782) bonus.
+
+
+
+
+
+
+
+
+
+== DB ==
+
+=== https://layerci.com/blog/postgres-is-the-answer/[Postgres is a great pub/sub & job server]
+
+
+
+
+
+== Articles ==
+
+=== https://monzo.com/blog/we-built-network-isolation-for-1-500-services[We built network isolation for 1,500 services to make Monzo more secure]
+
+=== https://srvaroa.github.io/kubernetes/migration/latency/dns/java/aws/microservices/2019/10/22/kubernetes-added-a-0-to-my-latency.html[K8s added a 10x to my latency]
+
+
+
+== Misc ==
+
+=== https://m.signalvnoise.com/launch-basecamp-gets-personal/[Basecamp Gets Personal]
+
+=== https://devblogs.microsoft.com/commandline/windows-terminal-preview-1910-release/[MS Terminal Preview]
+[quote, Chee Leong]
+____
+It supports gif background, already a win.
+____
+
+=== https://www.theregister.co.uk/2019/11/07/python_java_github_javascript/[Python overtakes Java to become second-most popular language on GitHub after JavaScript]
+
+[.small]
+1. JavaScript
+1. Python
+1. Java
+1. PHP
+
+=== https://www.backblaze.com/blog/backblaze-hard-drive-stats-q3-2019/[Backblaze Hard Drive Stats Q3 2019]
+
+=== !
+image::https://www.backblaze.com/blog/wp-content/uploads/2019/11/Q3-2019-Drive-Stats-table-V2.png[canvas,size=contain]

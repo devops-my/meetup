@@ -1,0 +1,128 @@
+:revealjs_theme: night
+:revealjs_slideNumber: h.v
+:revealjs_fragments: true
+:revealjs_history: true
+:revealjs_fragmentInURL: true
+:revealjs_previewLinks: true
+[.text-center]
+== DEVOPS MEETUP #18
+==== Juris Tech
+
+17th December 2019
+
+[.small]
+Slides: https://devops-my.github.io/meetup[devops-my.github.io/meetup]
+
+
+== Community
+
+=== !
+Volunteers (usually on https://engineers.my[EngineersMY slack])
+
+==== *JOIN US*
+
+Monthly meetup announced on https://www.meetup.com/DevOpsMalaysia/[meetup.com] +
+Slack us in `*#meetups*` to volunteer / speak
+
+
+=== OTHER MEETUPS
+DevKami curated meetups: +
+https://devkami.com/meetups[devkami.com/meetups]
+
+=== House Rules
+
+[.step]
+* minimal bikeshedding
+* respect opinions -- agree to disagree
+* participate
+* thank the sponsors & volunteers
+
+
+
+== BUZZCORNER
+
+
+== Meta ==
+
+=== We've been acquired!
+
+[.step]
+- The meetup group joined Azure Tech Communities network
+- TL;DR: Nothing changed other than the badge and meetup.com subscription upgrade/sponsorship
+
+
+== Containers ==
+
+=== https://techcrunch.com/2019/11/19/linode-launches-its-kubernetes-engine-into-beta/[Linode launches k8s engine]
+
+=== http://www.globenewswire.com/news-release/2019/11/13/1946551/0/en/Docker-Restructures-and-Secures-35-Million-to-Advance-Developer-Workflows-for-Modern-Applications.html[Docker Restructures and Secures $35 Million]
+
+[.step]
+- New investment to expand Docker Desktop and Docker Hub’s roles in the developer workflow for multi-service, hybrid cloud applications
+- Scott Johnston named Chief Executive Officer
+- Docker Enterprise sold to https://www.mirantis.com/company/press-center/company-news/mirantis-acquires-docker-enterprise/[Mirantis]
+
+
+=== https://github.com/cilium/hubble[hubble: Network, Service & Security Observability for k8s]
+
+Hubble is a fully distributed networking and security observability platform for cloud native workloads. It is built on top of Cilium and eBPF to enable deep visibility into the communication and behavior of services as well as the networking infrastructure in a completely transparent manner.
+
+
+
+== Security ==
+
+
+=== https://www.wired.com/story/billion-records-exposed-online/[1.2B Records Found Exposed in a Single Server]
+
+[.stretch]
+[quote, 'Troy Hunt, https://haveibeenpwned.com/[HaveIBeenPwned]']
+What stands out about this incident is the sheer volume of data that's been collected and how it's been aggregated, stored, and commercialized without the knowledge of the data owners. My own personal information is in there
+
+=== https://www.zdnet.com/article/two-malicious-python-libraries-removed-from-pypi/[Two malicious Python libs removed from PyPI]
+One library was available for only two days, but the second was live for nearly a year.
+
+
+
+
+== Articles ==
+
+=== https://about.gitlab.com/blog/2019/11/15/tracking-down-missing-tcp-keepalives/[Docker client lib & TCP Keepalives]
+
+=== https://increment.com/teams/how-twilio-scaled-its-engineering-structure/[How Twilio scaled its engineering structures]
+A focus on small teams anchored the organization’s growth from three to 2,300.
+
+
+=== https://www.ripe.net/publications/news/about-ripe-ncc-and-ripe/the-ripe-ncc-has-run-out-of-ipv4-addresses[The RIPE NCC has run out of IPv4 Addresses]
+RIPE issues IP address space within Europe
+
+=== https://www.techrepublic.com/google-amp/article/aws-outperforms-rivals-in-test-of-cloud-capabilities/[2020 Cloud Report from Cockroach Labs]
+AWS outperforms rivals in test of cloud capabilities
+
+
+== re:Invent recap ==
+
+
+
+== Misc ==
+
+=== https://cto.ai/[CTO.ai]
+The Ops Platform makes it easy for software development teams to create and share workflow automations without leaving the command line.
+
+=== https://www.mail-archive.com/haproxy@formilux.org/msg35491.html[HAProxy 2.1 released]
+It added 45 new commits
+after version 2.1-dev5.
+
+
+=== https://metaflow.org/[Netflix Metaflow]
+
+=== https://almond.stanford.edu/[Almond from Stanford]
+The Open, Privacy-Preserving Virtual Assistant
+
+image::https://almond-static.stanford.edu/assets/images/carousel-nest.png[720]
+
+=== https://linuxacademy.com/news/press-release/acloudguru/[A Cloud Guru acquires Linux Academy]
+
+// === https://www.backblaze.com/blog/backblaze-hard-drive-stats-q3-2019/[Backblaze Hard Drive Stats Q3 2019]
+
+// === !
+// image::https://www.backblaze.com/blog/wp-content/uploads/2019/11/Q3-2019-Drive-Stats-table-V2.png[canvas,size=contain]
