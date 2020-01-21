@@ -1,0 +1,211 @@
+:revealjs_theme: night
+:revealjs_slideNumber: h.v
+:revealjs_fragments: true
+:revealjs_history: true
+:revealjs_fragmentInURL: true
+:revealjs_previewLinks: true
+[.text-center]
+== DEVOPS MEETUP #19
+
+pass:[<h3>Accenture</h3>]
+
+21st January 2020
+
+[.small]
+Slides: https://devops-my.github.io/meetup[devops-my.github.io/meetup]
+
+
+== Community
+
+=== !
+Volunteers (usually on https://engineers.my[EngineersMY slack])
+
+==== *JOIN US*
+
+Monthly meetup announced on https://www.meetup.com/DevOpsMalaysia/[meetup.com] +
+Ping `*#meetups*` to volunteer / speak
+
+
+=== OTHER MEETUPS
+DevKami curated meetups: +
+https://devkami.com/meetups[devkami.com/meetups]
+
+=== House Rules
+
+[.step]
+* minimal bikeshedding
+* respect opinions -- agree to disagree
+* participate
+* thank the sponsors & volunteers
+
+
+
+
+
+== BUZZCORNER
+
+
+== Containers ==
+
+=== https://kuma.io/[Kuma.io]
+
+[.stretch]
+.Build, Secure and Observe your modern Service Mesh
+[caption="Kuma: ", link=https://kuma.io/images/diagrams/main-diagram@2x.png]
+image::https://kuma.io/images/diagrams/main-diagram@2x.png[Kuma]
+
+
+
+
+== Security ==
+
+
+=== https://thenextweb.com/facebook/2019/12/20/267-million-facebook-users-data-has-reportedly-been-leaked/[267 million FB data leak]
+
+[.stretch]
+[quote]
+The *Elasticsearch* cluster contained user IDs, phone numbers, and names of mostly US-based users.pass:[<br/>]
+... the data likely came from “an illegal scraping operation or Facebook API abuse by criminals in Vietnam.”
+
+
+=== https://webauthn.guide/[WebAuthn]
+
+[.step]
+* https://twitter.com/herrjemand/status/1069186691011796992[Pronounced "Web-Auth-En"], is an API for managing public key credentials
+* 81% of hacking-related breaches from stolen or weak passwords
+* 28% of users using 2FA :(
+* https://webauthn.io/[Demo]
+
+=== !
+
+image::https://miro.medium.com/max/2624/1*RFgaz29QsE1DYXpX0-9Aew.png[canvas,size=contain]
+
+=== SMS 2FA Insecure
+
+Yes we know, but https://www.issms2fasecure.com/[here] is an actual study by folks from Princeton
+
+
+== Articles ==
+
+
+=== https://blog.digitalocean.com/from-15-000-database-connections-to-under-100-digitaloceans-tale-of-tech-debt/[DO's tale of tech debt]
+
+From 15,000 database connections to under 100
+
+=== !
+
+[.stretch]
+.DB polling
+image::https://assets.digitalocean.com/ghost/2019/12/image5.png[DB polling]
+
+=== !
+
+[quote]
+While infinite loops and giving each server a direct connection to the database may have been rudimentary in terms of system design, *it was simple and it worked* – especially for a short-staffed technical team facing tight deadlines and a rapidly increasing user base.
+
+=== !
+
+[quote]
+It’s important to note that simply because something is “legacy” does not mean it is dysfunctional and should be replaced. Bloomberg and IBM have legacy services written in Fortran and COBOL that generate more revenue than entire companies. pass:[<br/><br/>]On the other hand, every system has a scaling limit.
+
+=== !
+
+[.step]
+* By the start of 2016, the db had > 15k direct connections, each querying for new events every 1-5s
+* SQL query that each hypervisor used also grown in complexity
+* It had become a colossus over 150 lines long and JOINed across 18 tables
+
+=== Refactored: Event Router
+
+[.stretch]
+.15k -> less than 100 direct connections
+image::https://assets.digitalocean.com/ghost/2019/12/image3.png[Event Router]
+
+=== Refactored: Scheduler V2
+
+(the thing that decides which hypervisor will host new droplets)
+[.step]
+* Single instance for the entire fleet -> multiple
+* Single threaded -> concurrent
+
+=== Refactored: Message Queue
+
+[.step]
+* By early 2017, the centralized MySQL message queue was still in use
+* (that's like ≈5 years!)
+* It was handling up to 400,000 new records/day, and 20 updates/s.
+* *Harpoon* was born to interface between services and DB via API
+
+=== 2019 DO Arch
+
+[.stretch]
+image::https://assets.digitalocean.com/ghost/2019/12/image2-1.png[DO Arch]
+
+=== Lessons: Gracefully manage internal friction
+pass:[<blockquote class="stretch" style="width: 100%; font-size: smaller;">
+Getting buy-in from the other teams proved more difficult. ...teams would have to give up their database access, rewrite portions of their codebase, and ultimately change how they had always done things. That wasn’t an easy sell. <br/><br/>Team by team and service by service, the Harpoon engineers were able to migrate the entire codebase onto their new platform. ...by end of 2017, Harpoon became the sole publisher to the database message queue.
+</blockquote>]
+
+=== Lessons: Don't overengineer
+pass:[<blockquote class="stretch" style="width: 100%; font-size: smaller;">
+We looked at using a queue service initially, but decided against it. It would be one more service that we needed to maintain...
+<br/><br/>
+It was definitely less overhead for the initial build, and the fact that it scaled for so long was quite impressive given how much DO grew between when we first wrote the event queue in late 2012...
+<br/><br/>
+I think when you are building something, it's important to not over engineer it. ...you can guess where some of the bottlenecks maybe, but without actual usage often those guesses can be wrong.
+</blockquote>]
+
+=== Lessons: Don't overengineer
+[quote, Moisey Uretsky, 'DigitalOcean Co-Founder']
+...We basically built things to accommodate how people wanted to work rather than future-scaling. In this case we decided to stick with a MySQL queue for events because it made Jeff's life a lot easier, and he built the entire backend...
+
+
+
+
+== Misc ==
+
+=== TLD https://bunnycdn.com/blog/is-your-fancy-new-domain-hurting-your-performance-gtld-benchmark/[Benchmarks] by BunnyCDN
+
+The biggest shockers were the `.info` and `.org` domains that showed really poor performance especially in the 85 percentile, despite being one of the oldest and well established TLD with millions of registered domains each. It appears *4 out of 6 of their nameservers are performing extremely poorly* which is the reason for the poor results.
+
+=== !
+
+image::https://bunnycdn.com/blog/content/images/2019/12/gtld-dns-resolution-time-6.png[canvas,size=contain]
+
+=== !
+
+[.step]
+* Another interesting thing to see was the performance for `.co`, `.biz` and `.in` domains that ended up way ahead of the rest.
+* So is your fancy new domain hurting your performance?
+* It actually might be, but probably not enough to worry about that too much.
+
+=== https://www.reddit.com/r/golang/comments/en2yvk/a_dead_simple_proxy_server_that_allows_you_to/fdx3lq1/?context=8&depth=9[Why Caddy is better than HAProxy]
+
+Matt Holt, creator of Caddy lists why he thinks Caddy is better
+
+=== User-Agent getting phased out
+
+[.step]
+* https://www.zdnet.com/article/google-to-phase-out-user-agent-strings-in-chrome/[Google is phasing out UA], and others will most likely follow the move
+* Replacement: https://developer.mozilla.org/en-US/docs/Glossary/Client_hints[Client Hints] HTTP header (`Accept-CH: DPR, Width, Viewport-Width, Downlink`)
+
+=== Example: Device Pixel Ratio
+.Request
+----
+Accept-CH: DPR
+Accept-CH-Lifetime: 86400
+----
+
+.Response
+----
+DPR: 1.0
+----
+
+=== Google kills, again
+
+Google https://digiday.com/media/google-plans-kill-off-third-party-cookies-chrome-within-2-years/[plans to kill] 3rd-party cookies within 2 years.
+
+// === https://www.backblaze.com/blog/backblaze-hard-drive-stats-q3-2019/[Backblaze Hard Drive Stats Q3 2019]
+
+// === !
+// image::https://www.backblaze.com/blog/wp-content/uploads/2019/11/Q3-2019-Drive-Stats-table-V2.png[canvas,size=contain]
