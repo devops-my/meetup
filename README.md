@@ -45,5 +45,7 @@ Many thanks to venue sponsors for hosting our meetups at no costs, and sometimes
 - [Tuxuri](https://www.tuxuri.com/)
 - [REA Group](https://www.rea-group.com/)
 - [FashionValet](https://www.fashionvalet.com/)
+- Accenture
+- [Mudah](https://mudah.my/)
 
 Make sure to check out [DevKami](https://devkami.com/page/meetups/)!
