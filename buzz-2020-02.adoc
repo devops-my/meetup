@@ -1,0 +1,191 @@
+:revealjs_theme: night
+:revealjs_slideNumber: h.v
+:revealjs_fragments: true
+:revealjs_history: true
+:revealjs_fragmentInURL: true
+:revealjs_previewLinks: true
+[.text-center]
+== DEVOPS MEETUP #20
+
+pass:[<h3>MindValley</h3>]
+
+18th February 2020
+
+[.small]
+Slides: https://devops-my.github.io/meetup[devops-my.github.io/meetup]
+
+
+== Community
+
+=== !
+Volunteers (usually on https://engineers.my[engineers.my])
+
+==== *JOIN US*
+
+Monthly meetup announced on https://www.meetup.com/DevOpsMalaysia/[meetup.com] +
+Ping `*#meetups*` to volunteer / speak
+
+
+=== OTHER MEETUPS
+DevKami curated meetups: +
+https://devkami.com/meetups[devkami.com/meetups]
+
+=== House Rules
+
+[.step]
+* minimal bikeshedding
+* respect opinions -- agree to disagree
+* participate
+* thank the sponsors & volunteers
+
+
+
+
+
+
+== BUZZCORNER
+
+
+
+== Security ==
+
+=== https://security.googleblog.com/2020/02/protecting-users-from-insecure_6.html[Chrome: Protect from insecure downloads]
+
+* Chrome will gradually ensure that HTTPS pages only download secure files
+* start blocking "mixed content downloads" (non-HTTPS downloads started on HTTPS pages)
+
+
+=== https://blog.cloudflare.com/javascript-libraries-are-almost-never-updated/[CloudFlare: JS libs almost never updated]
+
+Libraries are almost never updated once installed.
+
+Example: Oldest version of `jQuery` CDNJS includes is `1.10.0`, released on May 25, *2013*. The project still gets an average of 100k requests/day.
+
+
+=== https://www.helpnetsecurity.com/2020/02/11/cve-2020-2100/[12K+ Jenkins servers vulnerable]
+
+A vulnerability (CVE-2020-2100) in 12,000+ internet-facing Jenkins servers can be abused to mount, amplify reflective DDoS attacks against internet hosts.
+
+=== https://www.thestar.com.my/tech/tech-news/2020/01/15/microsoft-issues-critical-windows-security-fix-after-tipoff-from-us-nsa[Microsoft: NSA tipoff]
+
+Microsoft on Jan 14 rolled out an important security fix after the NSA tipped off the company to a serious flaw in its widely used Windows operating system.
+
+
+
+
+
+== Articles ==
+
+=== https://www.tunetheweb.com/blog/should-you-self-host-google-fonts/[pass:[<span style="font-size: smaller;">Should you self-host Google Fonts?</span>]]
+
+[.step]
+* historically browsers limited number of connections to each domain (typically 6/domain)
+* now HTTPS is the norm
+* HTTPS connection is more expensive to create
+* https://developers.google.com/web/fundamentals/performance/http2#design_and_technical_goals[HTTP/2] actually benefits single connection & multiplexing a single TCP stream
+* Google Fonts CSS is *render-blocking*
+
+=== FOIT - FOUT - FOFT
+https://www.zachleat.com/web/webfont-glossary/[FOIT]
+
+Flash of Invisible Text:: Default browser behavior to render text invisible while the web font is loading. In modern browsers, FOIT lasts a maximum of 3 seconds (IE & Edge render immediately). When people say that web fonts are blocking resources, they are likely referring to FOIT. FOIT is our enemy.
+
+=== FOIT - FOUT - FOFT
+https://www.zachleat.com/web/webfont-glossary/[FOUT]
+
+Flash of Unstyled Text:: Default behavior to render text with the fallback system font while the web font has loaded. FOUT is preferable to FOIT but care must be taken to minimize its reflow effect.
+
+=== FOIT - FOUT - FOFT
+https://www.zachleat.com/web/webfont-glossary/[FOFT]
+
+Flash of Faux Text::  A font loading strategy to render a roman web font first, and then use `font-synthesis` to render bold and italic variations immediately while loading true fonts.
+
+image::https://alistapart.com/wp-content/uploads/2012/07/smear-slant.png?w=960[faux]
+image::https://alistapart.com/wp-content/uploads/2012/07/real-styles.png?w=960[actual]
+
+=== !
+
+Security:
+[.step]
+* privacy implication (3rd-party tracking)
+* SPOF: Single Point of Failure (eg. China blocking Google CDN)
+* SRI + HTTP/2 issues
+    * –– CORS blocked if using `crossorigin=use-credentials` and remote is using `Access-Control-Allow-Origin: *`
+    * –– SRI https://nooshu.github.io/images/2019/12/the-impact-annotated.png[delay] ≈1s (DNS->CONNECT->SSL)
+
+=== !
+
+[.stretch]
+.Huge win
+image::https://www.tunetheweb.com/assets/images/blog/local-gfonts.png[Strip]
+
+=== !
+
+But!
+
+[.step]
+* Google Fonts might have better improvements in the future that you can benefit from *automatically*
+* Variable fonts: allow different styles of font to be used without having to download separate fonts
+* Progressive Font Enrichment: download of additional character definitions as they are needed as a stream of extra information which supplements the currently downloaded font
+
+=== !
+...so self-host?
+
+[.step]
+* yes it's better to self-host as the performance gains can be substantial
+* however it requires *EXTRA* effort so YMMV (resource hints, `font-display: swap`, font subsetting)
+* AND Google Fonts servers are also smart and keep on improving (OS-aware font hints, subsetting, brotli)
+* Bottom line: experiment!
+
+
+
+
+
+
+== Tools ==
+
+=== https://github.blog/2020-02-12-supercharge-your-command-line-experience-github-cli-is-now-in-beta/[GitHub CLI]
+
+.Pull request
+image::https://i1.wp.com/user-images.githubusercontent.com/10404068/74261502-34ae1380-4cb0-11ea-8baf-cf8248f1b222.png[CLI,720]
+
+=== https://pganalyze.com/[PGAnalayze]
+
+[quote, Han @angch]
+BTW, pganalyze.com. I’m. Damn. Impressed. Use it.
+
+
+== Misc ==
+
+=== https://www.bbc.com/news/technology-51133811[Microsoft makes 'carbon negative' pledge]
+
+=== https://www.lowtechmagazine.com/2020/01/how-sustainable-is-a-solar-powered-website.html[Solar Powered Website]
+
+.1 kwH of solar can serve ≈50K unique visitors
+image::https://krisdedecker.typepad.com/.a/6a00e0099229e888330240a4e08597200d-500wi[Solar,,360]
+
+=== https://kube.academy/[KubeAcademy]
+
+Recommended k8s learning resource.
+
+== /Buzz
+
+// Cheatsheet
+
+// No title slide
+// === !
+
+// Source code block with title
+// .Request
+// ----
+// Accept-CH: DPR
+// Accept-CH-Lifetime: 86400
+// ----
+
+// .Response
+// ----
+// DPR: 1.0
+// ----
+
+// Fullpage image
+// image::https://www.backblaze.com/blog/wp-content/uploads/2019/11/Q3-2019-Drive-Stats-table-V2.png[canvas,size=contain]
