@@ -149,7 +149,7 @@ But!
 .Pull request
 image::https://i1.wp.com/user-images.githubusercontent.com/10404068/74261502-34ae1380-4cb0-11ea-8baf-cf8248f1b222.png[CLI,720]
 
-=== https://pganalyze.com/[PGAnalayze]
+=== https://pganalyze.com/[PGAnalyze]
 
 [quote, Han @angch]
 BTW, pganalyze.com. I’m. Damn. Impressed. Use it.
